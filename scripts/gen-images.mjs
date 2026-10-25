@@ -369,6 +369,9 @@ case-invoice|Invoice dashboard|bars,doc,pie|Invoice dashboard
 case-zoho-crm|Zoho CRM dashboard|funnel,bars,pie|Zoho CRM dashboard
 case-zoho-people|Zoho People dashboard|person,bars,cal|Zoho People dashboard
 about-trust|Work you can look at|win,bars,check|Work you can look at
+accounting-tally-services|Accounting and Tally support|doc,bars,check|Accounting and Tally support
+mis-reports|MIS reports and dashboards|bars,pie,chat|MIS reports and dashboards
+website-development|Static and dynamic websites|win,gear,doc|Static and dynamic websites
 `.trim().split("\n");
 ART.forEach((line, i) => { const [n, l, m, c] = line.split("|"); art(n, l, m.split(","), c, i); });
 

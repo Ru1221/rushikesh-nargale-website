@@ -54,7 +54,8 @@ async function knowledge() {
     });
   }
   const people = team.map((t) => `${t.data.name}: ${t.data.email}, ${t.data.phone}`).join("; ");
-  const contact = `You can reach the team directly: ${people}. Or send an enquiry through the contact form.`;
+  const where = ((s.contact as any).locations || []).join(" and ");
+  const contact = `You can reach the team directly: ${people}.${where ? ` We are based in ${where}.` : ""} Or send an enquiry through the contact form.`;
   const cats = await list("category");
   const overview = cats
     .map((c) => {
@@ -71,12 +72,12 @@ async function knowledge() {
       mr: "आम्ही AI ऑटोमेशन, बिझनेस आणि वर्कफ्लो ऑटोमेशन, सॉफ्टवेअर व API इंटिग्रेशन, अंदाजपत्रक (BOQ) व टेंडर साधने, अकाउंट्स (Tally, Zoho), HR व सेल्स ऑटोमेशन आणि कस्टम ॲप्स व डॅशबोर्ड्स बनवतो.",
     },
     {
-      type: "info", title: "Websites and web apps", href: "/custom-software",
+      type: "info", title: "Websites and web apps", href: "/website-development",
       text: "website websites web site webpage web app webapp development develop design build wordpress ecommerce portal admin",
-      answer: "Yes. We build dynamic websites and custom web applications with a database and an admin area, so you can edit your own content without a developer.",
+      answer: "Yes. We build static websites (fast, simple, ideal for company profiles and landing pages) and dynamic websites with a database and an admin area, so you can edit your own content without a developer.",
       mr: "हो. आम्ही डायनॅमिक वेबसाइट्स आणि कस्टम वेब ॲप्लिकेशन्स बनवतो, ज्यात डेटाबेस आणि ॲडमिन पॅनल असतं, त्यामुळे तुम्ही स्वतः मजकूर बदलू शकता.",
     },
-    { type: "info", title: "Contact", href: "/contact", text: "contact email phone call reach talk speak whatsapp linkedin address", answer: contact, mr: `आमच्याशी थेट संपर्क साधा: ${people}. किंवा संपर्क फॉर्म भरा.` },
+    { type: "info", title: "Contact", href: "/contact", text: "contact email phone call reach talk speak whatsapp linkedin address location located where pune tuljapur office visit", answer: contact, mr: `आमच्याशी थेट संपर्क साधा: ${people}. किंवा संपर्क फॉर्म भरा.` },
     { type: "info", title: "Pricing", href: "/pricing", text: "price pricing cost quote quotation charges fee budget how much expensive cheap rate", answer: "Every project is scoped to your needs, so we do not publish fixed prices. After a short conversation we send a written proposal with scope, timeline and cost. Third-party tool and API costs are billed separately and explained up front.", mr: "प्रत्येक प्रकल्पाची किंमत गरजेनुसार ठरते, म्हणून आम्ही ठराविक दर जाहीर करत नाही. थोड्या चर्चेनंतर आम्ही व्याप्ती, वेळ आणि खर्चासह लेखी प्रस्ताव पाठवतो." },
     { type: "info", title: "Book a consultation", href: "/book-consultation", text: "consultation book appointment meeting call demo walkthrough schedule discuss", answer: "You can request a consultation and tell us a preferred time. A request is not a confirmed booking until we reply to you.", mr: "तुम्ही कन्सल्टेशनची विनंती करून सोयीची वेळ सांगू शकता. आम्ही उत्तर देईपर्यंत ती विनंती पक्की भेट नसते." },
     { type: "info", title: "Custom apps", href: "/custom-apps", text: "custom app apps application software portal dashboard internal tool build develop website web", answer: "We build custom internal business apps and dashboards: an AI policy assistant, procurement and requisition tracking, daily field reporting, asset tracking, HR tools, work status, staff directory, Zoho CRM and People dashboards, and a Tally dashboard for the director.", mr: "आम्ही कस्टम अंतर्गत बिझनेस ॲप्स व डॅशबोर्ड्स बनवतो: AI पॉलिसी असिस्टंट, प्रोक्युअरमेंट ट्रॅकिंग, दैनिक फील्ड रिपोर्टिंग, ॲसेट ट्रॅकिंग, HR टूल्स, Zoho CRM व People डॅशबोर्ड आणि डायरेक्टरसाठी Tally डॅशबोर्ड." },

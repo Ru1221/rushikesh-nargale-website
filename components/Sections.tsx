@@ -6,6 +6,7 @@ import Video, { embedUrl } from "./Video";
 import InquiryForm from "./InquiryForm";
 import Slider from "./Slider";
 import Avatar from "./Avatar";
+import FaqAccordion from "./FaqAccordion";
 import { serviceNames } from "@/lib/helpers";
 
 const wrap = (children: React.ReactNode, alt = false) => (
@@ -238,18 +239,7 @@ export async function SectionView({ s }: { s: Section }) {
 }
 
 export function Faq({ items }: { items: { q: string; a: string }[] }) {
-  return (
-    <div className="max-w-3xl divide-y divide-slate-200 rounded-xl border border-slate-200">
-      {items.map((f, i) => (
-        <details key={i} className="group p-4">
-          <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-navy-900">
-            {f.q}<span aria-hidden className="text-brand transition group-open:rotate-45">+</span>
-          </summary>
-          <p className="mt-2 text-slate-600">{f.a}</p>
-        </details>
-      ))}
-    </div>
-  );
+  return <FaqAccordion items={items} />;
 }
 
 export function TeamCard({ m }: { m: Record<string, any> }) {

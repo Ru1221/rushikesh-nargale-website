@@ -115,6 +115,21 @@ const services: S[] = [
     ["AI Document Processing", "PDF Question Answering", "Data extraction to spreadsheets"],
     ["Python", "LLM APIs", "OCR"],
     "Important information is buried in long PDFs and scanned documents.", ["ai-estimation", "ai-chatbots", "ai-automation"]],
+  ["accounting-tally-services", "Accounting and Tally Support", "accounts", "Day-to-day accounting, Tally bookkeeping, reconciliation and GST data preparation for small and growing businesses.",
+    "We support the everyday accounting work that keeps your books accurate and up to date: entries in Tally, bank and ledger reconciliation, invoice data, GST data preparation and Excel reports. Work is done carefully and confidentially, and final review, filing and statutory sign-off stay with your CA or accountant.",
+    ["Sales, purchase, receipt and payment entries", "Journal entries and ledger maintenance", "Cash and bank entries", "Debtors and creditors management and outstanding reports", "Bank reconciliation and cash book maintenance", "Ledger, debtor and creditor reconciliation", "GST data preparation and sales and purchase data checking", "Sales and purchase invoice preparation and recording", "E-invoice and e-way bill data support", "Data preparation for your CA or tax consultant"],
+    ["Tally Prime", "Zoho Books", "Microsoft Excel", "Google Sheets"],
+    "Small businesses often fall behind on entries, reconciliations and reports, which makes month-end and tax time stressful.", ["tally-integration", "accounts-automation", "mis-reports"]],
+  ["mis-reports", "MIS Reports and Dashboards", "accounts", "Clear monthly MIS reports and dashboards built from your accounting data, with AI tools used to speed up the mapping.",
+    "We turn your accounting and sales data into structured MIS reports and easy-to-read dashboards. AI tools such as ChatGPT help us map and organise the data faster, and every report is checked before it reaches you, so you can see trends, variances and key numbers without digging through spreadsheets.",
+    ["Customised MIS reports", "Monthly MIS reports in Excel", "Dashboards for sales, purchases and outstanding amounts", "Trend and variance analysis", "Data cleaning and verification", "Automated report mapping with AI tools", "Customised Excel reports"],
+    ["Microsoft Excel", "Google Sheets", "Tally data", "ChatGPT", "Claude"],
+    "Owners and managers get raw data but not clear reports, so decisions wait for someone to build a summary by hand.", ["accounting-tally-services", "accounts-automation", "custom-software"]],
+  ["website-development", "Website Development (Static and Dynamic)", "software", "Fast, professional websites: simple static sites or dynamic sites with a database and an admin panel.",
+    "We build both kinds of websites. A static website is fast, simple and low-cost to host, and suits a company profile, portfolio or landing page. A dynamic website adds a database and an admin panel so you can edit content, take enquiries, publish blogs and manage data yourself. Both are responsive, search-friendly and designed to look professional on phones, tablets and computers.",
+    ["Static websites: company profile, portfolio and landing pages", "Dynamic websites with a database and admin panel", "Enquiry and booking forms saved to a database", "Blog and content management", "Responsive design for every device", "Search-friendly structure and fast loading", "Hosting and domain setup guidance", "Updates and maintenance"],
+    ["Next.js", "React", "TypeScript", "PostgreSQL", "HTML and CSS"],
+    "Many businesses need a credible website, but do not know whether a simple page or a full dynamic site is the right choice.", ["custom-software", "ai-chatbots", "business-automation"]],
 ];
 const featuredSet = new Set(["ai-automation", "business-automation", "custom-software", "ai-agents", "ai-chatbots", "software-integration"]);
 services.forEach(([slug, title, cat, short, full, items, tech, problem, related], i) =>
@@ -154,7 +169,7 @@ add("team", "rushikesh-nargale", {
   name: "Rushikesh Nargale",
   title: "AI Automation Specialist | Business Automation | Software Integration",
   bio: "Rushikesh builds AI automation, workflow automation and software integrations for businesses. His work includes automation with n8n and AI services, Python automation and API integrations, and custom business software. He has built internal business apps and dashboards, including an AI policy assistant, procurement and field-reporting apps, asset tracking and HR tools, Zoho CRM and Zoho People dashboards, and a Tally dashboard for a director. He has strong working knowledge of AI tools such as ChatGPT, Claude and Grok, and many others.",
-  photo: "/team/rushikesh.jpg", email: "rushikeshnargale11@gmail.com", phone: "+91 8668379629",
+  location: "Pune, Maharashtra", photo: "/team/rushikesh.jpg", email: "rushikeshnargale11@gmail.com", phone: "+91 8668379629",
   linkedin: "https://www.linkedin.com/in/rushikesh-nargale-945586288/",
   portfolio: "https://ru1221.github.io/Portfolio/", social: [],
   education: [{ title: "B.Tech in Artificial Intelligence", place: "Terna Engineering College", period: "2022–2026" }],
@@ -165,7 +180,7 @@ add("team", "rushikesh-nargale", {
     { title: "AI Automation Developer", place: "Worship Earth Foundation", period: "" },
   ],
   skills: ["AI automation", "n8n workflows", "Python", "OpenAI API", "Gemini API", "Vapi", "Retell AI", "Make", "Zapier", "REST APIs & webhooks", "Google Workspace", "SQL", "Java", "JavaScript", "Scikit-learn", "TensorFlow", "ChatGPT", "Claude", "Grok", "Many other AI tools"],
-  responsibilities: ["Solution design", "Automation and integration development"],
+  responsibilities: ["Solution design", "Automation and integration development", "Accounting data, Tally and MIS reporting support"],
   projects: ["AI-powered Maharashtra News Automation System", "Workflow automation using n8n and AI services", "Custom internal business apps and dashboards (policy assistant, procurement, field reporting, asset tracking, HR, work status, staff directory)", "Zoho CRM and Zoho People dashboards", "Tally dashboard for the director", "Appointment booking AI voice assistant", "Automated lead management system", "Diabetes prediction model", "AI receptionist and customer support workflows", "Remote Access Platform"],
   contactKey: "rushikesh",
 }, 0, true);
@@ -173,7 +188,7 @@ add("team", "rutuja-nargale", {
   name: "Rutuja Nargale",
   title: "Junior Account Executive | Tally | Zoho Books | GST & TDS",
   bio: "Rutuja holds a B.Com degree and works in accounting. She has hands-on experience recording purchase bills, sales invoices and expenses, assisting with bank reconciliation, and supporting GST and TDS related work, using Tally, Zoho Books, Xero and Excel. Her accounting background supports our Tally, Zoho and accounts automation work. She also has working knowledge of AI tools such as ChatGPT, Claude and Grok.",
-  photo: "/team/rutuja.jpg", email: "rutujanargale2@gmail.com", phone: "+91 7841030309",
+  location: "Pune, Maharashtra", photo: "/team/rutuja.jpg", email: "rutujanargale2@gmail.com", phone: "+91 7841030309",
   linkedin: "https://www.linkedin.com/in/rutuja-nargale-74b904363", portfolio: "", social: [],
   education: [
     { title: "B.Com (CGPA 9.62)", place: "Dayanand College of Commerce, Latur", period: "2026" },
@@ -181,7 +196,7 @@ add("team", "rutuja-nargale", {
     { title: "SSC", place: "Swami Ramanand Tirth Vidyalaya, Hipparaga (Rava)", period: "2021" },
   ],
   experience: [{ title: "Junior Account Executive", place: "Kalpdeep Growbiz Consultancy Limited, Pune", period: "June 2026 – Present" }],
-  skills: ["Tally", "Zoho Books", "Xero", "MS Excel", "MS Word", "Typing (30 WPM)", "Communication skills", "GST and TDS basics", "ChatGPT", "Claude", "Grok", "Many other AI tools"],
+  skills: ["Tally", "Zoho Books", "Xero", "MS Excel", "MS Word", "Typing (30 WPM)", "Communication skills", "GST and TDS basics", "Bank reconciliation", "MIS reports", "ChatGPT", "Claude", "Grok", "Many other AI tools"],
   responsibilities: [
     "Recording and maintaining purchase bills, sales invoices and expense transactions",
     "Day-to-day accounting activities and transaction recording",
@@ -420,6 +435,16 @@ const FAQS: [string, string, string][] = [
   "Services",
   "Do you build chatbots and voice agents?",
   "Yes. We build AI chatbots and voice agents that answer from your own information, capture details and hand over to a person when needed."
+ ],
+ [
+  "Services",
+  "Do you build static and dynamic websites?",
+  "Yes. We build static websites (fast and simple, ideal for company profiles, portfolios and landing pages) and dynamic websites with a database and an admin panel, so you can manage content, enquiries and blogs yourself."
+ ],
+ [
+  "Services",
+  "Do you offer accounting and Tally support?",
+  "Yes. We support day-to-day Tally bookkeeping, bank reconciliation, GST data preparation, Excel reports and MIS dashboards. Final review, filing and statutory sign-off stay with your CA or accountant."
  ],
  [
   "Services",
@@ -710,7 +735,7 @@ export const seedContent = out;
 
 export const seedSettings: Record<string, any> = {
   general: { siteName: "RushiTech.AI", tagline: "Smart automation for smarter business", title: "AI Automation | Business Automation | Software Integration", logo: "/logo-mark.svg", favicon: "", ctaPrimary: "Explore Services", ctaSecondary: "Contact Us" },
-  contact: { email: "rushikeshnargale11@gmail.com", phone: "+91 8668379629", linkedin: "https://www.linkedin.com/in/rushikesh-nargale-945586288/", portfolio: "https://ru1221.github.io/Portfolio/" },
+  contact: { locations: ["Pune, Maharashtra (main location)", "Tuljapur, Maharashtra (second address)"], email: "rushikeshnargale11@gmail.com", phone: "+91 8668379629", linkedin: "https://www.linkedin.com/in/rushikesh-nargale-945586288/", portfolio: "https://ru1221.github.io/Portfolio/" },
   footer: { text: "AI automation, custom business applications, software integration, workflow automation, and intelligent business solutions." },
   seo: { title: "RushiTech.AI | AI Automation & Software Integration", description: "AI automation, business automation and software integration for businesses.", ogImage: "" },
   notifications: { adminEmail: "rushikeshnargale11@gmail.com", rushikesh: "rushikeshnargale11@gmail.com", rutuja: "rutujanargale2@gmail.com", sendConfirmation: true },

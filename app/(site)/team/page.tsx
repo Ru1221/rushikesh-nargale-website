@@ -21,6 +21,7 @@ export default async function Team() {
             <div className="min-w-0">
               <h2 className="text-2xl font-bold text-navy-900">{m.name}</h2>
               <p className="text-brand">{m.title}</p>
+              {m.location && <p className="text-sm text-slate-500">Based in {m.location}</p>}
               {m.bio && <div className="mt-3"><RichText text={m.bio} /></div>}
               <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
                 {m.email && <li><a className="text-brand hover:underline" href={`mailto:${m.email}`}>{m.email}</a></li>}

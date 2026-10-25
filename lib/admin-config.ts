@@ -120,6 +120,7 @@ export const RESOURCES: Record<string, Resource> = {
     fields: [
       { name: "name", label: "Name", type: "text" },
       { name: "title", label: "Professional title", type: "text" },
+      { name: "location", label: "Location", type: "text" },
       { name: "bio", label: "Biography", type: "textarea", rows: 5 },
       { name: "photo", label: "Profile photo", type: "media" },
       { name: "email", label: "Email", type: "text" },

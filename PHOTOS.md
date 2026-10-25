@@ -48,6 +48,9 @@ AI prompt template: *"Photorealistic cinematic photograph of <subject>, shallow 
 | `workflow-automation.jpg` | Workflow Automation | workflow diagram whiteboard |
 | `appointment-automation.jpg` | Appointment Booking | calendar planner schedule desk |
 | `document-ai.jpg` | AI Document and PDF Solutions | document scanning paperwork |
+| `accounting-tally-services.jpg` | Accounting and Tally Support | accountant desk tally laptop |
+| `mis-reports.jpg` | MIS Reports and Dashboards | business report dashboard charts |
+| `website-development.jpg` | Website Development (Static and Dynamic) | web design laptop responsive website |
 
 ### Industries (6)
 
@@ -153,4 +156,4 @@ AI prompt template: *"Photorealistic cinematic photograph of <subject>, shallow 
 | `blog-integration.jpg` | Blog: Tally, Zoho, Sheets | connected puzzle pieces |
 | `blog-checklist.jpg` | Blog: checklist | checklist pen notebook |
 
-94 photos in total.
+97 photos in total.

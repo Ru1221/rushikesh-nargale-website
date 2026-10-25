@@ -5,7 +5,7 @@ export default function Footer({
 }: {
   name: string; tagline: string; text: string;
   links: { label: string; href: string }[];
-  contact: { email?: string; phone?: string; linkedin?: string };
+  contact: { email?: string; phone?: string; linkedin?: string; locations?: string[] };
 }) {
   return (
     <footer className="bg-navy-950 text-slate-300">
@@ -27,6 +27,7 @@ export default function Footer({
           <ul className="space-y-2">
             {contact.email && <li><a href={`mailto:${contact.email}`} className="hover:text-white">{contact.email}</a></li>}
             {contact.phone && <li><a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="hover:text-white">{contact.phone}</a></li>}
+            {(contact.locations || []).map((l) => <li key={l}>{l}</li>)}
             {contact.linkedin && <li><a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a></li>}
           </ul>
         </div>

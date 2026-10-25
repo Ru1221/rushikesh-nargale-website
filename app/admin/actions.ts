@@ -219,7 +219,7 @@ export async function saveSettings(fd: FormData) {
   const email = (n: string) => { const v = g(n, 200); return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? v : ""; };
   const next: Record<string, any> = {
     general: { siteName: g("siteName", 100) || "Rushikesh Nargale", tagline: g("tagline", 200), title: g("title", 300), logo: safeUrl(g("logo")), favicon: safeUrl(g("favicon")), ctaPrimary: g("ctaPrimary", 60), ctaSecondary: g("ctaSecondary", 60) },
-    contact: { email: email("contactEmail"), phone: g("contactPhone", 40), linkedin: safeUrl(g("linkedin")), portfolio: safeUrl(g("portfolioUrl")) },
+    contact: { locations: String(fd.get("locations") || "").split(/\r?\n/).map((l) => l.trim().slice(0, 120)).filter(Boolean).slice(0, 6), email: email("contactEmail"), phone: g("contactPhone", 40), linkedin: safeUrl(g("linkedin")), portfolio: safeUrl(g("portfolioUrl")) },
     footer: { text: g("footerText", 800) },
     seo: { title: g("seoTitle", 200), description: g("seoDescription", 400), ogImage: safeUrl(g("ogImage")) },
     notifications: { adminEmail: email("adminEmail"), rushikesh: email("rushikeshEmail"), rutuja: email("rutujaEmail"), sendConfirmation: fd.get("sendConfirmation") === "on" },

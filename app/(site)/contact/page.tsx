@@ -28,6 +28,12 @@ export default async function Contact() {
               </ul>
             </div>
           ))}
+          {(s.contact.locations || []).length > 0 && (
+            <div className="card">
+              <h3 className="font-semibold text-navy-900">Locations</h3>
+              <ul className="mt-2 space-y-1 text-sm text-slate-700">{(s.contact.locations as string[]).map((l) => <li key={l}>{l}</li>)}</ul>
+            </div>
+          )}
           {s.contact.portfolio && <p className="text-sm text-slate-600">Portfolio: <a className="text-brand hover:underline" href={s.contact.portfolio} target="_blank" rel="noopener noreferrer">{s.contact.portfolio}</a></p>}
         </aside>
       </div>

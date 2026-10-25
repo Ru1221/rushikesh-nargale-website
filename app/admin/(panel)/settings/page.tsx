@@ -29,7 +29,8 @@ export default async function Settings(props: { searchParams: Promise<{ saved?: 
         </fieldset>
         <fieldset className="grid gap-4 sm:grid-cols-2"><legend className="mb-2 font-semibold">Contact & links</legend>
           <T n="contactEmail" l="Email" v={s.contact.email} /><T n="contactPhone" l="Phone" v={s.contact.phone} />
-          <T n="linkedin" l="LinkedIn URL" v={s.contact.linkedin} /><T n="portfolioUrl" l="Portfolio URL" v={s.contact.portfolio} />
+          <T n="linkedin" l="LinkedIn URL" v={s.contact.linkedin} />
+          <div className="sm:col-span-2"><label className="label" htmlFor="locations">Locations (one per line)</label><textarea id="locations" name="locations" rows={3} className="input" defaultValue={(s.contact.locations || []).join("\n")} /></div><T n="portfolioUrl" l="Portfolio URL" v={s.contact.portfolio} />
         </fieldset>
         <fieldset className="space-y-4"><legend className="mb-2 font-semibold">Footer</legend><T n="footerText" l="Footer text" v={s.footer.text} area /></fieldset>
         <fieldset className="grid gap-4"><legend className="mb-2 font-semibold">SEO defaults</legend>

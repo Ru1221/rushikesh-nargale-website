@@ -4,7 +4,7 @@ import { seedContent, seedSettings } from "./seed";
 export const hasDb = !!process.env.DATABASE_URL;
 
 /** Bump when lib/seed.ts content changes. Untouched rows are upgraded on the next start; rows edited in the admin are never overwritten. */
-const SEED_VERSION = 3;
+const SEED_VERSION = 5;
 
 const g = globalThis as unknown as { _pool?: Pool; _ready?: Promise<void> };
 
@@ -117,6 +117,7 @@ export function ready(): Promise<void> {
           }
         }
         await p.query("update settings set value = jsonb_set(value, '{tagline}', to_jsonb($1::text)) where key='general' and value->>'tagline' = 'Automate. Integrate. Innovate.'", [seedSettings.general.tagline]);
+        await p.query("update settings set value = jsonb_set(value, '{locations}', $1::jsonb) where key='contact' and not (value ? 'locations')", [JSON.stringify(seedSettings.contact.locations)]);
         await p.query("insert into settings (key, value) values ('__seed_version', $1) on conflict (key) do update set value = excluded.value", [JSON.stringify(SEED_VERSION)]);
       }
     })().catch((e) => {
