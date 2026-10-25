@@ -1,0 +1,20 @@
+name: Keep Render service awake
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping site
+        run: |
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -m 60 -w "%{http_code}" https://rushitech-ai.onrender.com/ || echo 000)
+            echo "attempt $i: HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 20
+          done
+          exit 1
