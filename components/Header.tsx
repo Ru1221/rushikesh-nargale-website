@@ -19,17 +19,14 @@ export default function Header({ name, logo, links }: { name: string; logo?: str
   const [dd, setDd] = useState<string | null>(null); // open dropdown on desktop
   const navRef = useRef<HTMLElement>(null);
 
-  // Mobile menu: stop the page behind it from scrolling; Escape or a wider screen closes it.
+  // Mobile menu: Escape or a wider screen closes it.
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
     const onResize = () => { if (window.innerWidth >= 1024) setOpen(false); };
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
     return () => {
-      document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("resize", onResize);
     };
@@ -99,35 +96,36 @@ export default function Header({ name, logo, links }: { name: string; logo?: str
       </div>
     </header>
 
-    {/* Outside <header>: a backdrop-filter on the header would otherwise shrink this "fixed" panel to the header's height. */}
+    {/* Outside <header>: a backdrop-filter on the header would otherwise change how this "fixed" panel is positioned. */}
+      {open && <button type="button" aria-label="Close menu" tabIndex={-1} onClick={() => setOpen(false)} className="fixed inset-0 z-[59] cursor-default bg-transparent lg:hidden" />}
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="fixed inset-x-0 bottom-0 top-[57px] z-[60] overflow-y-auto overscroll-contain border-t border-white/10 bg-navy-950 px-4 pb-28 lg:hidden">
-          {links.map((l) => {
-            const key = l.href + l.label;
-            if (!l.children?.length) return <Link key={key} href={l.href} onClick={() => setOpen(false)} className="block py-2.5 font-medium">{l.label}</Link>;
-            const expanded = sub === key;
-            return (
-              <div key={key}>
-                {/* Tapping the group name only expands it; it does not open the page. */}
-                <button
-                  type="button" aria-expanded={expanded} onClick={() => setSub(expanded ? null : key)}
-                  className="flex w-full items-center justify-between py-2.5 text-left font-medium"
-                >
-                  <span>{l.label}</span>
-                  <span aria-hidden className={"inline-block px-1 text-slate-300 transition-transform " + (expanded ? "rotate-180" : "")}>▾</span>
-                </button>
-                {expanded && (
-                  <div className="pb-2">
-                    <Link href={l.href} onClick={() => setOpen(false)} className="block py-1.5 pl-4 text-sm font-semibold text-cyan-accent">All {l.label.toLowerCase()} →</Link>
-                    {l.children.map((c) => (
-                      <Link key={c.href} href={c.href} onClick={() => setOpen(false)} className="block py-1.5 pl-4 text-sm text-slate-300">{c.label}</Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-          <Link href="/book-consultation" onClick={() => setOpen(false)} className="btn btn-primary mt-3 w-full">Book a Consultation</Link>
+        <nav id="mobile-nav" aria-label="Mobile" className="fixed right-3 top-[60px] z-[61] max-h-[min(66vh,440px)] w-[min(78vw,252px)] overflow-y-auto overscroll-contain rounded-2xl border border-white/10 bg-navy-900 p-1.5 text-white shadow-2xl lg:hidden">
+          <div className="grid grid-cols-2 gap-1">
+            {links.map((l) => {
+              const key = l.href + l.label;
+              const row = "flex items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-[13.5px] font-medium hover:bg-white/10";
+              if (!l.children?.length) return <Link key={key} href={l.href} onClick={() => setOpen(false)} className={row}>{l.label}</Link>;
+              const expanded = sub === key;
+              return (
+                <div key={key} className={expanded ? "col-span-2" : ""}>
+                  {/* Tapping the group name only expands it; it does not open the page. */}
+                  <button type="button" aria-expanded={expanded} onClick={() => setSub(expanded ? null : key)} className={row + " w-full" + (expanded ? " bg-white/5" : "")}>
+                    <span>{l.label}</span>
+                    <span aria-hidden className={"inline-block pl-1 text-slate-300 transition-transform " + (expanded ? "rotate-180" : "")}>▾</span>
+                  </button>
+                  {expanded && (
+                    <div className="mt-1 max-h-40 overflow-y-auto rounded-lg bg-black/20 py-1">
+                      <Link href={l.href} onClick={() => setOpen(false)} className="block px-3 py-1 text-[12.5px] font-semibold text-cyan-accent hover:bg-white/10">All {l.label.toLowerCase()} →</Link>
+                      {l.children.map((c) => (
+                        <Link key={c.href} href={c.href} onClick={() => setOpen(false)} className="block px-3 py-1 text-[12.5px] text-slate-300 hover:bg-white/10 hover:text-white">{c.label}</Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <Link href="/book-consultation" onClick={() => setOpen(false)} className="btn btn-primary mt-1.5 w-full !py-1.5 !text-[13px]">Book a Consultation</Link>
         </nav>
       )}
     </>
