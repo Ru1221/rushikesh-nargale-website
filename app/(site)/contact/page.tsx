@@ -10,7 +10,7 @@ export default async function Contact() {
   const [team, names, s] = await Promise.all([list("team"), serviceNames(), settings()]);
   return (
     <>
-      <PageHero eyebrow="Contact" title="Contact us" subtitle="Tell us about your project and we will get back to you." />
+      <PageHero eyebrow="Contact" title="Contact us" subtitle="Tell us about your project and we will get back to you." image="/img/hero-contact.svg" />
       <Breadcrumbs trail={[{ label: "Contact" }]} />
       <div className="container-x grid gap-10 py-12 lg:grid-cols-3">
         <div className="lg:col-span-2">

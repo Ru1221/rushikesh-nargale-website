@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const p = await get("post", params.slug);
   if (!p) return { title: "Not found", robots: { index: false } };
   return {
-    title: p.data.seoTitle || p.data.title,
+    title: p.data.seoTitle ? { absolute: p.data.seoTitle } : p.data.title,
     description: p.data.metaDescription || p.data.excerpt,
     alternates: { canonical: absUrl(`/blog/${p.slug}`) },
     openGraph: { type: "article", images: p.data.image ? [p.data.image] : undefined },

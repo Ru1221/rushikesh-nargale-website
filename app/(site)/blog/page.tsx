@@ -20,7 +20,7 @@ export default async function Blog({ searchParams }: { searchParams: { page?: st
 
   return (
     <>
-      <PageHero eyebrow="Blog" title="Blog and insights" subtitle="Practical notes on AI, automation and software integration." />
+      <PageHero eyebrow="Blog" title="Blog and insights" subtitle="Practical notes on AI, automation and software integration." image="/img/hero-blog.svg" />
       <Breadcrumbs trail={[{ label: "Blog" }]} />
       <div className="container-x py-12">
         <form role="search" className="mb-8 flex max-w-md gap-2">

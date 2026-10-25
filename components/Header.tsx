@@ -21,7 +21,7 @@ export default function Header({ name, logo, links }: { name: string; logo?: str
         Skip to content
       </a>
       <div className="container-x flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold">
+        <Link href="/" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
           {logo ? <img src={logo} alt="" className="h-8 w-8 rounded object-contain" /> : <img src="/logo-mark.svg" alt="" className="h-8 w-8" />}
           <Brand name={name} />
         </Link>

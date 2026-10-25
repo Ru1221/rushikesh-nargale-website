@@ -9,7 +9,7 @@ export default async function Industries() {
   const [inds, svcs] = await Promise.all([list("industry"), list("service")]);
   return (
     <>
-      <PageHero eyebrow="Industries" title="Industries we serve" subtitle="Where our automation and software solutions fit best." />
+      <PageHero eyebrow="Industries" title="Industries we serve" subtitle="Where our automation and software solutions fit best." image="/img/hero-industries.svg" />
       <Breadcrumbs trail={[{ label: "Industries" }]} />
       <div className="container-x grid gap-6 py-12 md:grid-cols-2">
         {!inds.length && <Empty title="No industries published yet" />}

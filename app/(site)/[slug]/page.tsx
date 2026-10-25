@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const svc = await get("service", params.slug);
   if (svc) {
     return {
-      title: svc.data.seoTitle || svc.data.title,
+      title: svc.data.seoTitle ? { absolute: svc.data.seoTitle } : svc.data.title,
       description: svc.data.metaDescription || svc.data.short,
       alternates: { canonical: absUrl(`/${svc.slug}`) },
       openGraph: { images: svc.data.hero ? [svc.data.hero] : undefined },
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await get("page", params.slug);
   if (!page) return { title: "Not found", robots: { index: false } };
   return {
-    title: page.data.seoTitle || page.data.title,
+    title: page.data.seoTitle ? { absolute: page.data.seoTitle } : page.data.title,
     description: page.data.metaDescription,
     alternates: { canonical: absUrl(`/${page.slug}`) },
     openGraph: { images: page.data.ogImage ? [page.data.ogImage] : undefined },
@@ -56,13 +56,12 @@ async function ServicePage({ svc }: { svc: Awaited<ReturnType<typeof get>> & {} 
   const cat = cats.find((c) => c.slug === d.category)?.data.name;
   return (
     <>
-      <PageHero eyebrow={cat} title={d.title} subtitle={d.short}>
+      <PageHero eyebrow={cat} title={d.title} subtitle={d.short} image={d.hero}>
         <Link href={d.ctaHref || "/contact"} className="btn btn-primary mt-6">{d.ctaLabel || "Contact Us"}</Link>
       </PageHero>
       <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: d.title }]} />
       <div className="container-x grid gap-10 py-12 lg:grid-cols-3">
         <div className="space-y-10 lg:col-span-2">
-          {d.hero && <img src={d.hero} alt={d.title} className="w-full rounded-xl" />}
           <RichText text={d.full} />
           {d.problem && (
             <div>
@@ -120,7 +119,7 @@ async function ServicePage({ svc }: { svc: Awaited<ReturnType<typeof get>> & {} 
           <div className="container-x">
             <h2 className="h2 mb-6">Related services</h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((r) => <ServiceCard key={r.slug} href={`/${r.slug}`} title={r.data.title} text={r.data.short} />)}
+              {related.map((r) => <ServiceCard key={r.slug} href={`/${r.slug}`} title={r.data.title} text={r.data.short} image={r.data.hero} />)}
             </div>
           </div>
         </section>

@@ -15,7 +15,7 @@ export async function ProjectIndex({ kind }: { kind: K }) {
   const ps = (await list("project")).filter((p) => (p.data.kind || "portfolio") === kind);
   return (
     <>
-      <PageHero eyebrow={m.label} title={m.title} subtitle={m.sub} />
+      <PageHero eyebrow={m.label} title={m.title} subtitle={m.sub} image={kind === "case_study" ? "/img/hero-casestudies.svg" : "/img/hero-portfolio.svg"} />
       <Breadcrumbs trail={[{ label: m.label }]} />
       <div className="container-x py-12">
         {!ps.length && <Empty title={`No ${m.label.toLowerCase()} published yet`} text="Add entries from the admin panel." />}

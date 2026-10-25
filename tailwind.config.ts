@@ -9,7 +9,7 @@ const config: Config = {
         brand: { DEFAULT: "#2f80ff", dark: "#1d62d6" },
         cyan: { accent: "#22d3ee" },
       },
-      fontFamily: { sans: ["var(--font-sans)", "system-ui", "sans-serif"] },
+      fontFamily: { sans: ["var(--font-sans)", "system-ui", "sans-serif"], display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"] },
       boxShadow: { glow: "0 10px 40px -10px rgba(47,128,255,.45)" },
     },
   },

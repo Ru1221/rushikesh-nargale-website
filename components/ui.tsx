@@ -1,25 +1,31 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-export function PageHero({ eyebrow, title, subtitle, children }: { eyebrow?: string; title: string; subtitle?: string; children?: ReactNode }) {
+export function PageHero({ eyebrow, title, subtitle, image, children }: { eyebrow?: string; title: string; subtitle?: string; image?: string; children?: ReactNode }) {
   return (
-    <section className="bg-gradient-to-br from-navy-950 via-navy-900 to-navy-700 py-14 text-white sm:py-20">
-      <div className="container-x">
-        {eyebrow && <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-cyan-accent">{eyebrow}</p>}
-        <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight sm:text-5xl">{title}</h1>
-        {subtitle && <p className="mt-4 max-w-2xl text-lg text-slate-300">{subtitle}</p>}
-        {children}
+    <section className="bg-gradient-to-br from-navy-950 via-navy-900 to-navy-700 py-12 text-white sm:py-16">
+      <div className={`container-x ${image ? "grid items-center gap-8 md:grid-cols-2" : ""}`}>
+        <div>
+          {eyebrow && <p className="eyebrow-pill mb-4">{eyebrow}</p>}
+          <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight sm:text-5xl">{title}</h1>
+          {subtitle && <p className="mt-4 max-w-2xl text-lg text-slate-300">{subtitle}</p>}
+          {children}
+        </div>
+        {image && <img src={image} alt="" className="w-full rounded-2xl shadow-2xl ring-1 ring-white/10" />}
       </div>
     </section>
   );
 }
 
-export function SectionHead({ title, intro }: { title?: string; intro?: string }) {
-  if (!title && !intro) return null;
+export function SectionHead({ title, intro, image }: { title?: string; intro?: string; image?: string }) {
+  if (!title && !intro && !image) return null;
   return (
-    <div className="mb-8 max-w-2xl">
-      {title && <h2 className="h2">{title}</h2>}
-      {intro && <p className="mt-2 text-slate-600">{intro}</p>}
+    <div className={`mb-8 ${image ? "grid items-center gap-6 md:grid-cols-2" : "max-w-2xl"}`}>
+      <div>
+        {title && <h2 className="h2">{title}</h2>}
+        {intro && <p className="mt-2 text-slate-600">{intro}</p>}
+      </div>
+      {image && <img src={image} alt="" loading="lazy" className="w-full rounded-2xl shadow-lg ring-1 ring-slate-200" />}
     </div>
   );
 }
@@ -33,12 +39,15 @@ export function Empty({ title, text }: { title: string; text?: string }) {
   );
 }
 
-export function ServiceCard({ href, title, text }: { href: string; title: string; text: string }) {
+export function ServiceCard({ href, title, text, image }: { href: string; title: string; text: string; image?: string }) {
   return (
-    <Link href={href} className="card group block">
-      <h3 className="text-lg font-semibold text-navy-900 group-hover:text-brand">{title}</h3>
-      <p className="mt-2 text-sm text-slate-600">{text}</p>
-      <span className="mt-4 inline-block text-sm font-semibold text-brand">Learn more →</span>
+    <Link href={href} className="card group block overflow-hidden !p-0">
+      {image && <img src={image} alt="" loading="lazy" className="aspect-video w-full object-cover transition group-hover:scale-[1.03]" />}
+      <div className="p-6">
+        <h3 className="text-lg font-semibold text-navy-900 group-hover:text-brand">{title}</h3>
+        <p className="mt-2 text-sm text-slate-600">{text}</p>
+        <span className="mt-4 inline-block text-sm font-semibold text-brand">Learn more →</span>
+      </div>
     </Link>
   );
 }

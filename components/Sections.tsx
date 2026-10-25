@@ -4,6 +4,8 @@ import type { Section } from "@/lib/types";
 import { PageHero, SectionHead, ServiceCard, RichText, Tag } from "./ui";
 import Video, { embedUrl } from "./Video";
 import InquiryForm from "./InquiryForm";
+import Slider from "./Slider";
+import Avatar from "./Avatar";
 import { serviceNames } from "@/lib/helpers";
 
 const wrap = (children: React.ReactNode, alt = false) => (
@@ -17,7 +19,7 @@ export async function SectionView({ s }: { s: Section }) {
     case "hero":
       if (s.compact)
         return (
-          <PageHero eyebrow={s.eyebrow} title={s.title} subtitle={s.subtitle}>
+          <PageHero eyebrow={s.eyebrow} title={s.title} subtitle={s.subtitle} image={s.image}>
             {s.primaryLabel && <Link href={s.primaryHref || "/contact"} className="btn btn-primary mt-6">{s.primaryLabel}</Link>}
           </PageHero>
         );
@@ -27,8 +29,8 @@ export async function SectionView({ s }: { s: Section }) {
           <div className="pointer-events-none absolute -bottom-32 left-10 h-80 w-80 rounded-full bg-cyan-accent/10 blur-3xl" aria-hidden />
           <div className="container-x relative grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-2">
             <div>
-              {s.eyebrow && <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-cyan-accent">{s.eyebrow}</p>}
-              <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">{s.title}</h1>
+              {s.eyebrow && <p className="eyebrow-pill mb-5">{s.eyebrow}</p>}
+              <h1 className="text-gradient text-4xl font-extrabold leading-[1.05] sm:text-6xl">{s.title}</h1>
               {s.subtitle && <p className="mt-5 max-w-xl text-lg text-slate-300">{s.subtitle}</p>}
               <div className="mt-8 flex flex-wrap gap-3">
                 {s.primaryLabel && <Link href={s.primaryHref || "/services"} className="btn btn-primary">{s.primaryLabel}</Link>}
@@ -91,9 +93,9 @@ export async function SectionView({ s }: { s: Section }) {
       svcs = svcs.slice(0, s.limit || 12);
       return wrap(
         <>
-          <SectionHead title={s.heading} intro={s.intro} />
+          <SectionHead title={s.heading} intro={s.intro} image={s.image} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {svcs.map((x) => <ServiceCard key={x.slug} href={`/${x.slug}`} title={x.data.title} text={x.data.short} />)}
+            {svcs.map((x) => <ServiceCard key={x.slug} href={`/${x.slug}`} title={x.data.title} text={x.data.short} image={x.data.hero} />)}
           </div>
           <div className="mt-8"><Link href="/services" className="font-semibold text-brand">View all services →</Link></div>
         </>,
@@ -108,7 +110,7 @@ export async function SectionView({ s }: { s: Section }) {
       const base = kind === "case_study" ? "/case-studies" : "/portfolio";
       return wrap(
         <>
-          <SectionHead title={s.heading} />
+          <SectionHead title={s.heading} intro={s.intro} image={s.image} />
           <div className="grid gap-5 md:grid-cols-3">
             {ps.map((p) => (
               <Link key={p.slug} href={`${base}/${p.slug}`} className="card block">
@@ -127,12 +129,12 @@ export async function SectionView({ s }: { s: Section }) {
       const inds = await list("industry");
       return wrap(
         <>
-          <SectionHead title={s.heading} />
+          <SectionHead title={s.heading} intro={s.intro} image={s.image} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {inds.map((i) => (
-              <Link key={i.slug} href={`/industries#${i.slug}`} className="card block">
-                <h3 className="font-semibold text-navy-900">{i.data.name}</h3>
-                <p className="mt-2 text-sm text-slate-600">{i.data.description}</p>
+              <Link key={i.slug} href={`/industries#${i.slug}`} className="card group block overflow-hidden !p-0">
+                {i.data.image && <img src={i.data.image} alt="" loading="lazy" className="aspect-video w-full object-cover transition group-hover:scale-[1.03]" />}
+                <div className="p-5"><h3 className="font-semibold text-navy-900">{i.data.name}</h3><p className="mt-2 text-sm text-slate-600">{i.data.description}</p></div>
               </Link>
             ))}
           </div>
@@ -141,10 +143,15 @@ export async function SectionView({ s }: { s: Section }) {
       );
     }
 
+    case "slider": {
+      const slides = (s.items || []).filter((x: any) => x.image).map((x: any) => ({ image: x.image, title: x.title, text: x.text, href: x.href }));
+      return slides.length ? wrap(<><SectionHead title={s.heading} intro={s.intro} /><Slider slides={slides} interval={(s.seconds || 5) * 1000} /></>) : null;
+    }
+
     case "feature_list":
       return wrap(
         <>
-          <SectionHead title={s.heading} />
+          <SectionHead title={s.heading} intro={s.intro} image={s.image} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {(s.items || []).map((it: any, i: number) => (
               <div key={i} className="card">
@@ -172,7 +179,7 @@ export async function SectionView({ s }: { s: Section }) {
     case "process_steps":
       return wrap(
         <>
-          <SectionHead title={s.heading} />
+          <SectionHead title={s.heading} intro={s.intro} image={s.image} />
           <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {(s.items || []).map((it: any, i: number) => (
               <li key={i} className="card">
@@ -189,7 +196,7 @@ export async function SectionView({ s }: { s: Section }) {
     case "faq": {
       let items: { q: string; a: string }[] = s.items || [];
       if (s.source === "all" || !items.length) items = (await list("faq")).map((f) => f.data as any).slice(0, s.limit || 20);
-      return items.length ? wrap(<><SectionHead title={s.heading} /><Faq items={items} /></>) : null;
+      return items.length ? wrap(<><SectionHead title={s.heading} intro={s.intro} image={s.image} /><Faq items={items} /></>) : null;
     }
 
     case "testimonials":
@@ -219,7 +226,7 @@ export async function SectionView({ s }: { s: Section }) {
       const team = (await list("team")).slice(0, s.limit || 4);
       return team.length ? wrap(
         <>
-          <SectionHead title={s.heading} intro={s.intro} />
+          <SectionHead title={s.heading} intro={s.intro} image={s.image} />
           <div className="grid gap-5 sm:grid-cols-2">{team.map((m) => <TeamCard key={m.slug} m={m.data} />)}</div>
           <div className="mt-6"><Link href="/team" className="font-semibold text-brand">Meet the full team →</Link></div>
         </>,
@@ -254,16 +261,12 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
 
 export function TeamCard({ m }: { m: Record<string, any> }) {
   return (
-    <article className="card flex gap-4">
-      {m.photo ? <img src={m.photo} alt={m.name} loading="lazy" className="h-20 w-20 rounded-full object-cover" /> : (
-        <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-gradient-to-br from-navy-700 to-brand text-2xl font-bold text-white" aria-hidden>
-          {String(m.name || "?").split(" ").map((w: string) => w[0]).join("").slice(0, 2)}
-        </div>
-      )}
-      <div>
+    <article className="card flex min-w-0 flex-col gap-4 sm:flex-row">
+      <Avatar src={m.photo} name={m.name} className="h-24 w-24 shrink-0 rounded-full text-2xl" />
+      <div className="min-w-0">
         <h3 className="font-semibold text-navy-900">{m.name}</h3>
         <p className="text-sm text-slate-600">{m.title}</p>
-        <p className="mt-2 text-sm"><a className="text-brand" href={`mailto:${m.email}`}>{m.email}</a></p>
+        <p className="mt-2 break-words text-sm"><a className="text-brand" href={`mailto:${m.email}`}>{m.email}</a></p>
       </div>
     </article>
   );

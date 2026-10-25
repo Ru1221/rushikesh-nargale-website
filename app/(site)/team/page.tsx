@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { list } from "@/lib/content";
 import { Breadcrumbs, PageHero, RichText, Tag, Empty } from "@/components/ui";
+import Avatar from "@/components/Avatar";
 
 export const metadata: Metadata = { title: "Our Team", description: "Meet the team behind the automation and software solutions." };
 
@@ -10,20 +11,14 @@ export default async function Team() {
   const team = await list("team");
   return (
     <>
-      <PageHero eyebrow="Team" title="Our team" subtitle="The people who will work on your project." />
+      <PageHero eyebrow="Team" title="Our team" subtitle="The people who will work on your project." image="/img/hero-team.svg" />
       <Breadcrumbs trail={[{ label: "Team" }]} />
       <div className="container-x space-y-10 py-12">
         {!team.length && <Empty title="No team profiles published yet" />}
         {team.map(({ slug, data: m }) => (
           <article key={slug} id={slug} className="card grid gap-6 md:grid-cols-[180px_1fr]">
-            <div>
-              {m.photo ? <img src={m.photo} alt={m.name} loading="lazy" className="aspect-square w-full rounded-xl object-cover" /> : (
-                <div className="grid aspect-square w-full place-items-center rounded-xl bg-gradient-to-br from-navy-700 to-brand text-5xl font-bold text-white" aria-hidden>
-                  {String(m.name).split(" ").map((w: string) => w[0]).join("").slice(0, 2)}
-                </div>
-              )}
-            </div>
-            <div>
+            <div><Avatar src={m.photo} name={m.name} className="aspect-square w-full max-w-[220px] rounded-xl text-5xl" /></div>
+            <div className="min-w-0">
               <h2 className="text-2xl font-bold text-navy-900">{m.name}</h2>
               <p className="text-brand">{m.title}</p>
               {m.bio && <div className="mt-3"><RichText text={m.bio} /></div>}
