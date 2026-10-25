@@ -75,7 +75,7 @@ Open http://localhost:3000 and http://localhost:3000/admin.
 
 ### Keeping the free service awake
 
-Render free services sleep after about 15 minutes without traffic. The repo has a GitHub Actions workflow (`.github/workflows/keepalive.yml`) that pings `/api/health` every 5 minutes, but GitHub can delay scheduled runs. For a stronger guarantee, add a free external monitor (for example UptimeRobot or cron-job.org) that requests `https://rushitech-ai.onrender.com/api/health` every 5 minutes. The only guaranteed option is a paid Render instance (Starter), which never sleeps.
+The server pings its own public URL every 8 minutes (`instrumentation.ts`, uses Render's `RENDER_EXTERNAL_URL`), which counts as traffic and stops the free service from sleeping once it is running. Set `KEEP_ALIVE=off` to disable it (for example on a paid instance). A single free service running all month fits inside Render's 750 free instance hours. Render free services sleep after about 15 minutes without traffic. The repo has a GitHub Actions workflow (`.github/workflows/keepalive.yml`) that pings `/api/health` every 5 minutes, but GitHub can delay scheduled runs. For a stronger guarantee, add a free external monitor (for example UptimeRobot or cron-job.org) that requests `https://rushitech-ai.onrender.com/api/health` every 5 minutes. The only guaranteed option is a paid Render instance (Starter), which never sleeps.
 
 ### Free-tier limits to know
 
