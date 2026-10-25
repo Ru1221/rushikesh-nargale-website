@@ -170,6 +170,8 @@ export const SECTION_DEFS: Record<string, SectionDef> = {
       { name: "secondaryLabel", label: "Secondary button label", type: "text" }, { name: "secondaryHref", label: "Secondary button link", type: "url" },
       { name: "image", label: "Image", type: "media" }, { name: "video", label: "Video", type: "media" },
       { name: "compact", label: "Compact (page header style)", type: "bool" },
+      { name: "seconds", label: "Seconds per slide (home hero slider)", type: "number" },
+      { name: "items", label: "Hero slider slides (optional)", type: "items", fields: [{ name: "title", label: "Title", type: "text" }, { name: "text", label: "Description", type: "textarea", rows: 2 }, { name: "image", label: "Image", type: "media" }, { name: "href", label: "Link", type: "url" }] },
     ],
     defaults: { title: "New hero", compact: true },
   },

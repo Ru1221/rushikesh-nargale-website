@@ -37,18 +37,11 @@ export async function SectionView({ s }: { s: Section }) {
                 {s.secondaryLabel && <Link href={s.secondaryHref || "/contact"} className="btn btn-outline">{s.secondaryLabel}</Link>}
               </div>
             </div>
-            {s.video ? <Video url={s.video} poster={s.image} title={s.title} /> : s.image ? (
+            {(s.items || []).some((x: any) => x.image) ? (
+              <Slider stacked slides={s.items.filter((x: any) => x.image).map((x: any) => ({ image: x.image, title: x.title, text: x.text, href: x.href }))} interval={(s.seconds || 5) * 1000} />
+            ) : s.video ? <Video url={s.video} poster={s.image} title={s.title} /> : s.image ? (
               <img src={s.image} alt="" className="w-full rounded-2xl shadow-2xl" />
-            ) : (
-              <div className="hidden rounded-2xl border border-white/10 bg-white/5 p-6 lg:block" aria-hidden>
-                {["Automate", "Integrate", "Innovate"].map((w, i) => (
-                  <div key={w} className="mb-3 flex items-center gap-3 rounded-lg bg-white/5 p-4 last:mb-0">
-                    <span className="grid h-9 w-9 place-items-center rounded-full bg-brand font-bold">{i + 1}</span>
-                    <span className="text-lg font-semibold">{w}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+            ) : null}
           </div>
         </section>
       );

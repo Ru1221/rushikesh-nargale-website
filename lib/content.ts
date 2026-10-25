@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { hasDb, q } from "./db";
 import { seedContent, seedSettings } from "./seed";
+import { mapPhotos } from "./photos";
 import type { Item, Kind } from "./types";
 
 const seedItems: Item[] = seedContent.map((c, i) => ({ ...c, id: i + 1 }));
@@ -17,9 +18,11 @@ async function fetchAll(kind: Kind): Promise<Item[]> {
 
 const cachedAll = unstable_cache(async (kind: Kind) => fetchAll(kind), ["content-all"], { tags: ["content"], revalidate: 60 });
 
+const withPhotos = (items: Item[]): Item[] => items.map((i) => ({ ...i, data: mapPhotos(i.data) }));
+
 /** Published items of a kind (public site). */
 export async function list(kind: Kind): Promise<Item[]> {
-  return (await cachedAll(kind)).filter((i) => i.status === "published");
+  return withPhotos((await cachedAll(kind)).filter((i) => i.status === "published"));
 }
 
 /** Every item of a kind, including drafts (admin). Never cached. */

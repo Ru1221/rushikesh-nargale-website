@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { mapPhotos } from "@/lib/photos";
 
 export function PageHero({ eyebrow, title, subtitle, image, children }: { eyebrow?: string; title: string; subtitle?: string; image?: string; children?: ReactNode }) {
   return (
@@ -11,7 +12,7 @@ export function PageHero({ eyebrow, title, subtitle, image, children }: { eyebro
           {subtitle && <p className="mt-4 max-w-2xl text-lg text-slate-300">{subtitle}</p>}
           {children}
         </div>
-        {image && <img src={image} alt="" className="w-full rounded-2xl shadow-2xl ring-1 ring-white/10" />}
+        {image && <img src={mapPhotos(image)} alt="" className="w-full rounded-2xl object-cover shadow-2xl ring-1 ring-white/10" />}
       </div>
     </section>
   );
@@ -25,7 +26,7 @@ export function SectionHead({ title, intro, image }: { title?: string; intro?: s
         {title && <h2 className="h2">{title}</h2>}
         {intro && <p className="mt-2 text-slate-600">{intro}</p>}
       </div>
-      {image && <img src={image} alt="" loading="lazy" className="w-full rounded-2xl shadow-lg ring-1 ring-slate-200" />}
+      {image && <img src={mapPhotos(image)} alt="" loading="lazy" className="w-full rounded-2xl object-cover shadow-lg ring-1 ring-slate-200" />}
     </div>
   );
 }
