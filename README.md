@@ -1,0 +1,94 @@
+# RushiTech.AI website
+
+AI automation, business automation and software integration website with a built-in CMS and admin panel.
+
+- **Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS 3 · PostgreSQL (`pg`) · Zod
+- **Versions:** next 14.2.35, react 18, tailwindcss 3.4, zod 4, pg 8, Node 22
+- **Hosting:** Render free web service + any free PostgreSQL (`DATABASE_URL`)
+
+## What is included
+
+| Area | Where |
+| --- | --- |
+| 32 public routes (home, about, team, 17 service pages, portfolio, case studies, industries, how-it-works, pricing, FAQ, blog, consultation, contact, privacy, terms) | `app/(site)` |
+| Custom pages created in the admin appear at `/your-slug` | `app/(site)/[slug]` |
+| Admin panel (`/admin`): pages/section builder, services, categories, industries, portfolio, case studies, blog, FAQs, team, navigation, reusable blocks, images, videos, inquiries CRM, settings | `app/admin` |
+| Contact + consultation forms, saved to the database, optional email | `app/actions.ts` |
+| Media upload / serving (images, videos with Range support) | `app/api/admin/media`, `app/(site)/media/[id]` |
+| Logo files | `public/logo-*.svg`, `app/icon.svg` |
+
+## Data model (simple on purpose)
+
+Tables are created automatically on first start and sample content is seeded (`lib/db.ts`, `lib/seed.ts`):
+
+- `content` — one table for pages, services, categories, industries, team, projects, blog posts, FAQs, navigation and reusable blocks (`kind`, `slug`, `status`, `sort`, `featured`, `data jsonb`).
+- `settings`, `media` (files stored as `bytea`), `inquiries`, `inquiry_notes`.
+
+If `DATABASE_URL` is not set, the public site still renders from the built-in sample content (read-only) and the admin shows "Database not connected".
+
+> Seeded portfolio entries only contain facts you supplied. Review all sample text, the privacy policy and the terms before launch.
+
+## Environment variables
+
+See `.env.example`.
+
+| Variable | Purpose |
+| --- | --- |
+| `DATABASE_URL` | PostgreSQL connection string (required for admin, forms, uploads) |
+| `ADMIN_EMAIL`, `ADMIN_PASSWORD` | The single admin login |
+| `SESSION_SECRET` | 16+ random characters; signs the admin session cookie |
+| `SITE_URL` | Public URL for canonical links and sitemap |
+| `RESEND_API_KEY`, `MAIL_FROM` | Optional email notifications (inquiries are always saved first) |
+
+## Run locally
+
+```bash
+npm install
+cp .env.example .env.local   # fill in values
+npm run dev
+```
+
+Open http://localhost:3000 and http://localhost:3000/admin.
+
+## Deploy on Render (free)
+
+1. Push this repo to GitHub.
+2. Render → **New + → Blueprint** → pick the repo (uses `render.yaml`), or create a **Web Service** manually: build `npm ci && npm run build`, start `npm start`, plan Free.
+3. Create a free **PostgreSQL** (or use Neon/Supabase) and set `DATABASE_URL`.
+4. Set `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `SITE_URL`.
+5. Deploy, then sign in at `/admin/login`.
+
+### Free-tier limits to know
+
+- Render free web services sleep after ~15 minutes idle (first request is slow).
+- Render free PostgreSQL **expires after 30 days**. For a permanent free database use [Neon](https://neon.tech) and just change `DATABASE_URL`.
+- Media is stored in the database: images up to 8 MB, videos up to 40 MB. For larger videos add a YouTube/Vimeo link under *Admin → Videos*. Watch your database size limit.
+
+## Security notes
+
+- Every admin page, server action and API route calls `requireAdmin()` / `currentAdmin()` on the server; the session is an HMAC-signed, HttpOnly cookie.
+- Login is rate limited; public forms use a honeypot, timing check and per-IP rate limit; inputs are validated with Zod.
+- Uploads are checked by file signature (SVG is rejected) and size; user URLs are restricted to `/`, `#`, `http(s)`, `mailto:`, `tel:`.
+- CMS content is structured data rendered by React (escaped); no arbitrary scripts.
+- Security headers are set in `next.config.mjs`. Public admin registration does not exist; the admin account is defined by environment variables.
+- Multi-user roles are intentionally not implemented.
+
+## Email
+
+Set `RESEND_API_KEY` and a verified-domain `MAIL_FROM`. Until then the admin *Settings* page shows "not configured" and nothing is claimed as sent.
+
+## Testing checklist
+
+- [ ] All 32 public routes return 200 and unknown URLs return the 404 page
+- [ ] Contact and consultation forms save and show a reference; validation errors appear
+- [ ] `/admin` redirects to login when signed out; `/api/admin/media` returns 401
+- [ ] Create, edit, reorder, publish, duplicate and delete content in each admin section
+- [ ] Page builder: add, move, hide, duplicate and delete sections; saved page appears at `/slug`
+- [ ] Upload image and video; replace; delete warning for media in use; video plays and seeks
+- [ ] Inquiries: filter, notes, status, CSV export
+
+## Troubleshooting
+
+- **Admin says "not configured":** set `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `SESSION_SECRET` (16+ chars) and redeploy.
+- **Changes not visible:** public content is cached up to 60 seconds; saving in admin refreshes it immediately.
+- **Database errors on Render:** use the *internal* connection string for services in the same region; the external one needs SSL (handled automatically).
