@@ -73,6 +73,10 @@ Open http://localhost:3000 and http://localhost:3000/admin.
 4. Set `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `SITE_URL`.
 5. Deploy, then sign in at `/admin/login`.
 
+### Keeping the free service awake
+
+Render free services sleep after about 15 minutes without traffic. The repo has a GitHub Actions workflow (`.github/workflows/keepalive.yml`) that pings `/api/health` every 5 minutes, but GitHub can delay scheduled runs. For a stronger guarantee, add a free external monitor (for example UptimeRobot or cron-job.org) that requests `https://rushitech-ai.onrender.com/api/health` every 5 minutes. The only guaranteed option is a paid Render instance (Starter), which never sleeps.
+
 ### Free-tier limits to know
 
 - Render free web services sleep after ~15 minutes idle (first request is slow).

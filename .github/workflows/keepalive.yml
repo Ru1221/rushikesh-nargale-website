@@ -1,8 +1,12 @@
 name: Keep Render service awake
 
+# Render's free plan puts a service to sleep after ~15 minutes without traffic.
+# This pings the site every 5 minutes (the shortest interval GitHub allows).
+# GitHub may delay scheduled runs; for a stronger guarantee also add an external
+# uptime monitor on https://rushitech-ai.onrender.com/api/health (see README).
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -12,7 +16,7 @@ jobs:
       - name: Ping site
         run: |
           for i in 1 2 3; do
-            code=$(curl -s -o /dev/null -m 60 -w "%{http_code}" https://rushitech-ai.onrender.com/ || echo 000)
+            code=$(curl -s -o /dev/null -m 90 -w "%{http_code}" https://rushitech-ai.onrender.com/api/health || echo 000)
             echo "attempt $i: HTTP $code"
             [ "$code" = "200" ] && exit 0
             sleep 20
