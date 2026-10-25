@@ -3,6 +3,9 @@ import { seedContent, seedSettings } from "./seed";
 
 export const hasDb = !!process.env.DATABASE_URL;
 
+/** Bump when lib/seed.ts content changes. Untouched rows are upgraded on the next start; rows edited in the admin are never overwritten. */
+const SEED_VERSION = 2;
+
 const g = globalThis as unknown as { _pool?: Pool; _ready?: Promise<void> };
 
 export function pool(): Pool {
@@ -101,6 +104,20 @@ export function ready(): Promise<void> {
       }
       for (const [k, v] of Object.entries(seedSettings)) {
         await p.query("insert into settings (key, value) values ($1,$2) on conflict do nothing", [k, JSON.stringify(v)]);
+      }
+      const ver = (await p.query("select value from settings where key='__seed_version'")).rows[0]?.value;
+      if (Number(ver ?? 0) < SEED_VERSION) {
+        for (const c of seedContent) {
+          const r = await p.query("select id, created_at, updated_at from content where kind=$1 and slug=$2", [c.kind, c.slug]);
+          if (!r.rows.length) {
+            await p.query("insert into content (kind, slug, status, sort, featured, data) values ($1,$2,$3,$4,$5,$6)", [c.kind, c.slug, c.status, c.sort, c.featured, JSON.stringify(c.data)]);
+          } else if (r.rows[0].created_at.getTime() === r.rows[0].updated_at.getTime()) {
+            // never edited in the admin: safe to refresh (updated_at is left untouched)
+            await p.query("update content set data=$1, status=$2, sort=$3, featured=$4 where id=$5", [JSON.stringify(c.data), c.status, c.sort, c.featured, r.rows[0].id]);
+          }
+        }
+        await p.query("update settings set value = jsonb_set(value, '{tagline}', to_jsonb($1::text)) where key='general' and value->>'tagline' = 'Automate. Integrate. Innovate.'", [seedSettings.general.tagline]);
+        await p.query("insert into settings (key, value) values ('__seed_version', $1) on conflict (key) do update set value = excluded.value", [JSON.stringify(SEED_VERSION)]);
       }
     })().catch((e) => {
       g._ready = undefined;
