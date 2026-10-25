@@ -379,4 +379,6 @@ terms-hero|Terms|doc,shield,check|Clear terms
 `.trim().split("\n");
 ART.forEach((line, i) => { const [n, l, m, c] = line.split("|"); art(n, l, m.split(","), c, i); });
 
+/* drop retired scenes */
+for (const n of ["about","blog","contact","faq","how-it-works","industries","legal-terms","portfolio","pricing","problems","services","team","technologies"]) fs.rmSync(path.join(OUT, n + ".svg"), { force: true });
 console.log("generated", fs.readdirSync(OUT).length, "images in", OUT);
