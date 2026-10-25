@@ -30,9 +30,9 @@ export function checkCredentials(email: string, password: string) {
   return okE && okP;
 }
 
-export function startSession(email: string) {
+export async function startSession(email: string) {
   const payload = Buffer.from(JSON.stringify({ e: email, x: Date.now() + MAX_AGE * 1000 })).toString("base64url");
-  cookies().set(COOKIE, `${payload}.${sign(payload)}`, {
+  (await cookies()).set(COOKIE, `${payload}.${sign(payload)}`, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -41,14 +41,14 @@ export function startSession(email: string) {
   });
 }
 
-export function endSession() {
-  cookies().delete(COOKIE);
+export async function endSession() {
+  (await cookies()).delete(COOKIE);
 }
 
 /** Returns the admin email if the request has a valid session, otherwise null. */
-export function currentAdmin(): string | null {
+export async function currentAdmin(): Promise<string | null> {
   if (!adminConfigured()) return null;
-  const v = cookies().get(COOKIE)?.value;
+  const v = (await cookies()).get(COOKIE)?.value;
   if (!v) return null;
   const [payload, sig] = v.split(".");
   if (!payload || !sig || !safeEq(sig, sign(payload))) return null;
@@ -61,8 +61,8 @@ export function currentAdmin(): string | null {
 }
 
 /** Use at the top of every admin page and server action. */
-export function requireAdmin(): string {
-  const a = currentAdmin();
+export async function requireAdmin(): Promise<string> {
+  const a = await currentAdmin();
   if (!a) redirect("/admin/login");
   return a;
 }

@@ -4,8 +4,8 @@ import LoginForm from "./LoginForm";
 
 export const metadata = { title: "Admin login", robots: { index: false } };
 
-export default function Login() {
-  if (currentAdmin()) redirect("/admin");
+export default async function Login() {
+  if (await currentAdmin()) redirect("/admin");
   return (
     <div className="grid min-h-screen place-items-center bg-navy-950 p-4">
       <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl">

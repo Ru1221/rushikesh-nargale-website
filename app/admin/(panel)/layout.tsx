@@ -12,8 +12,8 @@ const links: [string, string][] = [
   ["/admin/inquiries", "Inquiries"], ["/admin/navigation", "Navigation"], ["/admin/settings", "Settings"],
 ];
 
-export default function PanelLayout({ children }: { children: React.ReactNode }) {
-  const email = requireAdmin();
+export default async function PanelLayout({ children }: { children: React.ReactNode }) {
+  const email = await requireAdmin();
   return (
     <div className="min-h-screen bg-slate-100 lg:flex">
       <aside className="bg-navy-950 text-slate-200 lg:min-h-screen lg:w-60 lg:shrink-0">

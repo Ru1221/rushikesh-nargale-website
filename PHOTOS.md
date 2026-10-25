@@ -118,6 +118,26 @@ AI prompt template: *"Photorealistic cinematic photograph of <subject>, shallow 
 | `hero-casestudies.jpg` | Case studies header | analytics charts desk |
 | `hero-consult.jpg` | Consultation page header | video call meeting laptop |
 
+### Custom apps (14)
+
+| Name | Where it appears | Search / subject idea |
+| --- | --- | --- |
+| `apps-hero.jpg` | Custom Apps page header | business software dashboard team |
+| `apps-portal.jpg` | Custom Apps: one portal | laptop app dashboard portal |
+| `apps-more.jpg` | Custom Apps: more apps we can build | software development team planning |
+| `home-apps.jpg` | Home: Custom business apps | business dashboard laptop |
+| `case-policy.jpg` | App: policy assistant | chatbot documents office |
+| `case-procurement.jpg` | App: procurement tracker | purchase order approval warehouse |
+| `case-field.jpg` | App: daily field reporting | field engineer tablet report |
+| `case-assets.jpg` | App: asset tracking | equipment inventory barcode scanning |
+| `case-hr.jpg` | App: HR management | hr manager employee files |
+| `case-workstatus.jpg` | App: work status | team kanban board screen |
+| `case-people.jpg` | App: staff directory | employees directory office team |
+| `case-invoice.jpg` | App: Tally director dashboard | executive financial dashboard |
+| `case-zoho-crm.jpg` | App: Zoho CRM dashboard | sales pipeline dashboard crm |
+| `case-zoho-people.jpg` | App: Zoho People dashboard | hr analytics dashboard attendance |
+| `about-trust.jpg` | About: Work you can look at | portfolio review client meeting |
+
 ### FAQ groups (4) and blog covers (6)
 
 | Name | Where it appears | Search / subject idea |
@@ -133,4 +153,4 @@ AI prompt template: *"Photorealistic cinematic photograph of <subject>, shallow 
 | `blog-integration.jpg` | Blog: Tally, Zoho, Sheets | connected puzzle pieces |
 | `blog-checklist.jpg` | Blog: checklist | checklist pen notebook |
 
-79 photos in total.
+94 photos in total.

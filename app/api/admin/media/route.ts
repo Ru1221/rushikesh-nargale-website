@@ -30,15 +30,15 @@ const row = (r: any) => ({
 
 const COLS = "m.id, m.kind, m.filename, m.mime, m.size, m.title, m.alt, m.caption, m.description, m.category, m.status, m.created_at, m.thumb_id, case when m.mime='external/url' then convert_from(m.data,'UTF8') end as ext_url";
 
-function guard() {
-  if (!currentAdmin()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+async function guard() {
+  if (!(await currentAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!hasDb) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
   return null;
 }
-const refresh = () => { revalidateTag("content"); revalidatePath("/", "layout"); };
+const refresh = () => { revalidateTag("content", { expire: 0 }); revalidatePath("/", "layout"); };
 
 export async function GET(req: NextRequest) {
-  const g = guard(); if (g) return g;
+  const g = await guard(); if (g) return g;
   const u = req.nextUrl.searchParams;
   if (u.get("usage")) {
     const id = Number(u.get("usage"));
@@ -56,7 +56,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const g = guard(); if (g) return g;
+  const g = await guard(); if (g) return g;
   const ct = req.headers.get("content-type") || "";
 
   if (ct.includes("application/json")) {
@@ -102,7 +102,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
-  const g = guard(); if (g) return g;
+  const g = await guard(); if (g) return g;
   const b = await req.json();
   const s = (v: any, n: number) => String(v ?? "").slice(0, n);
   const status = ["published", "draft", "archived"].includes(b.status) ? b.status : "published";
@@ -112,7 +112,7 @@ export async function PATCH(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const g = guard(); if (g) return g;
+  const g = await guard(); if (g) return g;
   const id = Number(req.nextUrl.searchParams.get("id"));
   await q("update media set thumb_id=null where thumb_id=$1", [id]);
   await q("delete from media where id=$1", [id]);

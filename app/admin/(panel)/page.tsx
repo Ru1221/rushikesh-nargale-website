@@ -3,7 +3,8 @@ import { hasDb, q } from "@/lib/db";
 
 export const metadata = { title: "Dashboard" };
 
-export default async function Dashboard({ searchParams }: { searchParams: { error?: string } }) {
+export default async function Dashboard(props: { searchParams: Promise<{ error?: string }> }) {
+  const searchParams = await props.searchParams;
   if (!hasDb) {
     return (
       <div className="max-w-2xl rounded-xl border border-amber-300 bg-amber-50 p-6 text-amber-900">

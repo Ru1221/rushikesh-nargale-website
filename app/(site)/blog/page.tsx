@@ -7,7 +7,10 @@ export const metadata: Metadata = { title: "Blog and Insights", description: "Ar
 
 const PER = 9;
 
-export default async function Blog({ searchParams }: { searchParams: { page?: string; q?: string; tag?: string } }) {
+export default async function Blog(
+  props: { searchParams: Promise<{ page?: string; q?: string; tag?: string }> }
+) {
+  const searchParams = await props.searchParams;
   const page = Math.max(1, Number(searchParams.page) || 1);
   const qs = (searchParams.q || "").toLowerCase().trim();
   let posts = (await list("post")).filter((p) => !p.data.publishedAt || new Date(p.data.publishedAt) <= new Date());

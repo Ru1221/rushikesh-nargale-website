@@ -8,9 +8,10 @@ import { Breadcrumbs, PageHero, RichText, ServiceCard, Tag } from "@/components/
 import Video from "@/components/Video";
 import { absUrl } from "@/lib/helpers";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const svc = await get("service", params.slug);
   if (svc) {
     return {
@@ -30,13 +31,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function DynamicPage({ params }: Props) {
+export default async function DynamicPage(props: Props) {
+  const params = await props.params;
   const svc = await get("service", params.slug);
   if (svc) return <ServicePage svc={svc} />;
 
   let page = await get("page", params.slug);
   // Admins can preview drafts.
-  if (!page && currentAdmin()) page = await getAny("page", params.slug);
+  if (!page && (await currentAdmin())) page = await getAny("page", params.slug);
   if (!page || params.slug === "home") notFound();
 
   return (

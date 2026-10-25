@@ -5,7 +5,11 @@ import PageEditor from "@/components/admin/PageEditor";
 
 export const metadata = { title: "Edit page" };
 
-export default async function EditPage({ params, searchParams }: { params: { id: string }; searchParams: { saved?: string } }) {
+export default async function EditPage(
+  props: { params: Promise<{ id: string }>; searchParams: Promise<{ saved?: string }> }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const isNew = params.id === "new";
   const item = isNew ? undefined : (await listAll("page")).find((i) => String(i.id) === params.id);
   if (!isNew && !item) notFound();

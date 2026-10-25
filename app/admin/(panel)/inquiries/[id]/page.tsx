@@ -6,7 +6,11 @@ import { deleteInquiry, updateInquiry } from "@/app/admin/actions";
 export const metadata = { title: "Inquiry" };
 const STATUSES = ["New", "Contacted", "Discussion Scheduled", "Proposal Sent", "Won", "Lost", "Archived"];
 
-export default async function Inquiry({ params, searchParams }: { params: { id: string }; searchParams: { saved?: string } }) {
+export default async function Inquiry(
+  props: { params: Promise<{ id: string }>; searchParams: Promise<{ saved?: string }> }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const id = Number(params.id);
   if (!Number.isInteger(id)) notFound();
   const r = (await q<any>("select * from inquiries where id=$1", [id]))[0];

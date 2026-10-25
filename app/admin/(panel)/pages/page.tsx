@@ -3,7 +3,8 @@ import ResourceList from "@/components/admin/ResourceList";
 
 export const metadata = { title: "Pages" };
 
-export default async function AdminPages({ searchParams }: { searchParams: Record<string, string> }) {
+export default async function AdminPages(props: { searchParams: Promise<Record<string, string>> }) {
+  const searchParams = await props.searchParams;
   const items = await listAll("page");
   return (
     <div>

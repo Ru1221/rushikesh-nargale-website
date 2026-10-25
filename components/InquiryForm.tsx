@@ -1,5 +1,7 @@
 "use client";
-import { useFormState, useFormStatus } from "react-dom";
+import Link from "next/link";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { useState } from "react";
 import { submitInquiry, type FormState } from "@/app/actions";
 
@@ -27,7 +29,7 @@ function Field({ name, label, error, required, children }: { name: string; label
 const initial: FormState = { ok: false, message: "" };
 
 export default function InquiryForm({ type, services }: { type: "contact" | "consultation"; services: string[] }) {
-  const [state, action] = useFormState(submitInquiry, initial);
+  const [state, action] = useActionState(submitInquiry, initial);
   const [ts] = useState(() => Date.now());
   const e = state.errors || {};
   const consult = type === "consultation";
@@ -97,7 +99,7 @@ export default function InquiryForm({ type, services }: { type: "contact" | "con
       <div>
         <label className="flex items-start gap-2 text-sm">
           <input type="checkbox" name="consent" id="consent" className="mt-1" aria-describedby={e.consent ? "consent-err" : undefined} />
-          <span>I agree to be contacted about my enquiry. See the <a className="text-brand underline" href="/privacy-policy">Privacy Policy</a>. <span aria-hidden className="text-red-600">*</span></span>
+          <span>I agree to be contacted about my enquiry. See the <Link className="text-brand underline" href="/privacy-policy">Privacy Policy</Link>. <span aria-hidden className="text-red-600">*</span></span>
         </label>
         {e.consent && <p id="consent-err" role="alert" className="mt-1 text-sm text-red-600">{e.consent}</p>}
       </div>

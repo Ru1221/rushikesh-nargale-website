@@ -354,6 +354,21 @@ hero-blog|Blog|doc,mag,bars|Blog and insights
 hero-portfolio|Portfolio|win,net,check|Portfolio
 hero-casestudies|Case studies|doc,bars,check|Case studies
 hero-consult|Consultation|cal,mic,check|Book a consultation
+apps-hero|Custom business apps|win,person,gear|Custom business apps
+apps-portal|One secure portal|win,link,shield|One secure portal
+apps-more|More apps we can build|gear,doc,cal|More apps we can build
+home-apps|Custom business apps|win,bars,person|Custom business apps
+case-policy|Policy assistant|chat,doc,shield|Policy assistant
+case-procurement|Procurement workflow|doc,check,clock|Procurement workflow
+case-field|Daily field reporting|person,cal,bars|Daily field reports
+case-assets|Asset tracking|win,mag,link|Asset tracking
+case-hr|HR management|person,doc,check|HR management
+case-workstatus|Employee work status|bars,person,clock|Work status
+case-people|Staff directory|person,mail,net|Staff directory
+case-invoice|Invoice dashboard|bars,doc,pie|Invoice dashboard
+case-zoho-crm|Zoho CRM dashboard|funnel,bars,pie|Zoho CRM dashboard
+case-zoho-people|Zoho People dashboard|person,bars,cal|Zoho People dashboard
+about-trust|Work you can look at|win,bars,check|Work you can look at
 `.trim().split("\n");
 ART.forEach((line, i) => { const [n, l, m, c] = line.split("|"); art(n, l, m.split(","), c, i); });
 

@@ -4,7 +4,8 @@ import { RESOURCES } from "@/lib/admin-config";
 import { saveItem } from "@/app/admin/actions";
 import ItemForm from "@/components/admin/ItemForm";
 
-export default async function AdminEdit({ params }: { params: { resource: string; id: string } }) {
+export default async function AdminEdit(props: { params: Promise<{ resource: string; id: string }> }) {
+  const params = await props.params;
   const res = RESOURCES[params.resource];
   if (!res) notFound();
   const isNew = params.id === "new";

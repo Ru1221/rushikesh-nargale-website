@@ -153,7 +153,7 @@ inds.forEach(([slug, name, description, svc], i) => add("industry", slug, { name
 add("team", "rushikesh-nargale", {
   name: "Rushikesh Nargale",
   title: "AI Automation Specialist | Business Automation | Software Integration",
-  bio: "Rushikesh builds AI automation, workflow automation and software integrations for businesses. His work includes automation with n8n and AI services, Python automation and API integrations, and custom business software.",
+  bio: "Rushikesh builds AI automation, workflow automation and software integrations for businesses. His work includes automation with n8n and AI services, Python automation and API integrations, and custom business software. He has built internal business apps and dashboards, including an AI policy assistant, procurement and field-reporting apps, asset tracking and HR tools, Zoho CRM and Zoho People dashboards, and a Tally dashboard for a director. He has strong working knowledge of AI tools such as ChatGPT, Claude and Grok, and many others.",
   photo: "/team/rushikesh.jpg", email: "rushikeshnargale11@gmail.com", phone: "+91 8668379629",
   linkedin: "https://www.linkedin.com/in/rushikesh-nargale-945586288/",
   portfolio: "https://ru1221.github.io/Portfolio/", social: [],
@@ -164,15 +164,43 @@ add("team", "rushikesh-nargale", {
     { title: "Data Science Intern", place: "Anyatam-Adhyayan Education Services Pvt. Ltd.", period: "Jul 2024 – Dec 2024" },
     { title: "AI Automation Developer", place: "Worship Earth Foundation", period: "" },
   ],
-  skills: ["AI automation", "n8n workflows", "Python", "OpenAI API", "Gemini API", "Vapi", "Retell AI", "Make", "Zapier", "REST APIs & webhooks", "Google Workspace", "SQL", "Java", "JavaScript", "Scikit-learn", "TensorFlow"],
+  skills: ["AI automation", "n8n workflows", "Python", "OpenAI API", "Gemini API", "Vapi", "Retell AI", "Make", "Zapier", "REST APIs & webhooks", "Google Workspace", "SQL", "Java", "JavaScript", "Scikit-learn", "TensorFlow", "ChatGPT", "Claude", "Grok", "Many other AI tools"],
   responsibilities: ["Solution design", "Automation and integration development"],
-  projects: ["AI-powered Maharashtra News Automation System", "Workflow automation using n8n and AI services", "Appointment booking AI voice assistant", "Automated lead management system", "Diabetes prediction model", "AI receptionist and customer support workflows", "Remote Access Platform"],
+  projects: ["AI-powered Maharashtra News Automation System", "Workflow automation using n8n and AI services", "Custom internal business apps and dashboards (policy assistant, procurement, field reporting, asset tracking, HR, work status, staff directory)", "Zoho CRM and Zoho People dashboards", "Tally dashboard for the director", "Appointment booking AI voice assistant", "Automated lead management system", "Diabetes prediction model", "AI receptionist and customer support workflows", "Remote Access Platform"],
   contactKey: "rushikesh",
 }, 0, true);
 add("team", "rutuja-nargale", {
-  name: "Rutuja Nargale", title: "Team Member", bio: "",
+  name: "Rutuja Nargale",
+  title: "Junior Account Executive | Tally | Zoho Books | GST & TDS",
+  bio: "Rutuja holds a B.Com degree and works in accounting. She has hands-on experience recording purchase bills, sales invoices and expenses, assisting with bank reconciliation, and supporting GST and TDS related work, using Tally, Zoho Books, Xero and Excel. Her accounting background supports our Tally, Zoho and accounts automation work. She also has working knowledge of AI tools such as ChatGPT, Claude and Grok.",
   photo: "/team/rutuja.jpg", email: "rutujanargale2@gmail.com", phone: "+91 7841030309",
-  linkedin: "https://www.linkedin.com/in/rutuja-nargale-74b904363", portfolio: "", social: [], education: [], experience: [], skills: [], responsibilities: [], projects: [],
+  linkedin: "https://www.linkedin.com/in/rutuja-nargale-74b904363", portfolio: "", social: [],
+  education: [
+    { title: "B.Com (CGPA 9.62)", place: "Dayanand College of Commerce, Latur", period: "2026" },
+    { title: "HSC", place: "Bhanudasrao Chavan Mahavidyalaya, Lohara", period: "2023" },
+    { title: "SSC", place: "Swami Ramanand Tirth Vidyalaya, Hipparaga (Rava)", period: "2021" },
+  ],
+  experience: [{ title: "Junior Account Executive", place: "Kalpdeep Growbiz Consultancy Limited, Pune", period: "June 2026 – Present" }],
+  skills: ["Tally", "Zoho Books", "Xero", "MS Excel", "MS Word", "Typing (30 WPM)", "Communication skills", "GST and TDS basics", "ChatGPT", "Claude", "Grok", "Many other AI tools"],
+  responsibilities: [
+    "Recording and maintaining purchase bills, sales invoices and expense transactions",
+    "Day-to-day accounting activities and transaction recording",
+    "Assisting with bank reconciliation and payment recording",
+    "Accounting entries and records in Xero and Zoho Books",
+    "Assisting with GST and TDS related accounting work and documentation",
+    "Checking invoices, vendor details, payment references and supporting documents",
+    "Accounting data, records and basic reporting in Excel",
+  ],
+  certifications: [
+    "Certificate Programme in Banking, Finance and Insurance (CPBFI), Sep – Oct 2024",
+    "Tally Prime Certificate",
+    "NPTEL (IIT Madras): Introduction to GST",
+    "HR Workshop Certificate, Bajaj Finserv Ltd.",
+    "Value Education Certificate Course",
+    "English Typing Certificate, 30 WPM",
+    "KnowLens (2024): The Birth of a Salesman, Manzil: Fundamentals of Bancassurance, The Leap Year: Insurance Selling",
+  ],
+  projects: [],
   contactKey: "rutuja",
 }, 1, true);
 
@@ -197,6 +225,169 @@ proj("ai-receptionist-support", "AI receptionist and customer support workflows"
   "Workflows for AI reception and customer query handling: answering routine questions, supporting chat and voice flows, and escalating complex cases to a person.", ["Voice AI", "OpenAI", "WhatsApp"], ["ai-chatbots", "ai-voice-agents"], 6, false);
 proj("remote-access-platform", "Remote Access Platform",
   "A remote access platform project. Detailed capabilities will be added once confirmed.", [], ["custom-software"], 2, false);
+
+/* ---------- Custom business apps (shown as anonymised case studies) ---------- */
+const CASES: [string, string, string, string, string, string, string[], string[]][] = [
+ [
+  "ai-policy-assistant",
+  "AI policy assistant for employees",
+  "An internal assistant where employees ask questions about company and HR policies in plain language and get answers taken from the approved policy documents.",
+  "Employees often ask HR the same policy questions again and again, and policy documents are long and hard to search.",
+  "A chat assistant that reads the approved policy documents, answers in simple language and shows which document the answer came from. Questions it cannot answer are passed to HR.",
+  "case-policy",
+  [
+   "Ask questions in plain language",
+   "Answers based on approved documents only",
+   "Source shown with every answer",
+   "Hand-off to HR when unsure"
+  ],
+  [
+   "ai-chatbots",
+   "document-ai"
+  ]
+ ],
+ [
+  "procurement-requisition-tracker",
+  "Procurement and requisition tracker",
+  "A web app to raise material and purchase requisitions, route them for approval and track every request to completion.",
+  "Requisitions sent by email or paper are easy to lose, and nobody can quickly see what is pending and with whom.",
+  "A structured request form with approval steps, status tracking and a dashboard of open requests, so each request has an owner and a visible status.",
+  "case-procurement",
+  [
+   "Requisition form with required fields",
+   "Approval workflow",
+   "Status and history for each request",
+   "Dashboard of pending items"
+  ],
+  [
+   "custom-software",
+   "workflow-automation"
+  ]
+ ],
+ [
+  "daily-field-reporting",
+  "Daily field reporting app",
+  "A simple app for field teams to submit daily reports, with a consolidated view for managers.",
+  "Daily updates from people in the field arrive as messages and calls, and managers spend time collecting them.",
+  "A mobile-friendly report form for each day's work, with a manager dashboard that shows who has reported and what was done.",
+  "case-field",
+  [
+   "Mobile-friendly daily report form",
+   "Manager view of all reports",
+   "Who has and has not reported",
+   "Export to spreadsheets"
+  ],
+  [
+   "custom-software",
+   "business-automation"
+  ]
+ ],
+ [
+  "asset-tracking-system",
+  "Asset tracking system",
+  "An app to keep a register of company assets, who holds them, where they are and what condition they are in.",
+  "Asset details live in spreadsheets, so locations and ownership go out of date.",
+  "A central asset register with assignment, location and status, searchable by anyone who needs it, with a history of changes.",
+  "case-assets",
+  [
+   "Central asset register",
+   "Assignment and location tracking",
+   "Status and condition",
+   "Change history"
+  ],
+  [
+   "custom-software"
+  ]
+ ],
+ [
+  "hr-management-app",
+  "HR management app",
+  "A web app for employee records and everyday HR work such as onboarding steps and requests.",
+  "HR information is spread across files and chats, and routine requests are handled manually.",
+  "One place for employee records and HR workflows, with access limited to the right people.",
+  "case-hr",
+  [
+   "Employee records",
+   "Onboarding checklists",
+   "Request handling",
+   "Role-based access"
+  ],
+  [
+   "hr-automation",
+   "custom-software"
+  ]
+ ],
+ [
+  "employee-work-status",
+  "Employee work status tracker",
+  "A lightweight tracker where team members post what they are working on and managers get a clear picture.",
+  "Managers do not have one clear view of who is working on what.",
+  "A status board where each person updates their current work, with filters by team and date.",
+  "case-workstatus",
+  [
+   "Quick status updates",
+   "Team and date filters",
+   "Manager overview",
+   "Simple reports"
+  ],
+  [
+   "custom-software",
+   "workflow-automation"
+  ]
+ ],
+ [
+  "staff-directory-portal",
+  "Staff directory and self-service portal",
+  "A people portal with a searchable staff directory and basic self-service for employees.",
+  "Finding the right colleague or updating basic details means asking around or emailing HR.",
+  "A searchable directory with profiles and a few self-service actions, kept up to date from the HR records.",
+  "case-people",
+  [
+   "Searchable staff directory",
+   "Employee profiles",
+   "Self-service updates",
+   "Linked to HR records"
+  ],
+  [
+   "custom-software",
+   "hr-automation"
+  ]
+ ],
+ [
+  "invoice-dashboard",
+  "Tally dashboard for the director",
+  "A read-only management dashboard built on Tally data, giving the director a clear view of sales, purchases, invoices and outstanding amounts without asking for reports.",
+  "The director has to ask the accounts team for reports to see how the business is doing, and the answers arrive late and in different formats.",
+  "A secure dashboard fed from the Tally data. It opens on a one-page summary for the director and lets them drill into invoices, parties and months, with filters and export. Access is read-only and limited to the people who need it.",
+  "case-invoice",
+  [
+   "Director summary cards: sales, purchases, receivables and payables",
+   "Invoice register with filters by date, party and status",
+   "Outstanding receivables and payables, party-wise",
+   "Month-wise and party-wise views",
+   "Export to spreadsheets for further analysis",
+   "Read-only, role-based access",
+   "Data refreshed from the Tally data on a schedule you choose"
+  ],
+  [
+   "tally-integration",
+   "accounts-automation"
+  ]
+ ]
+];
+CASES.forEach(([slug, title, description, problem, solution, img, features, services], i) =>
+  add("project", slug, { kind: "case_study", title, description, problem, solution, tech: [], images: [`/img/${img}.svg`], video: "", features, outcomes: [], url: "", services, seoTitle: `${title} | RushiTech.AI`, metaDescription: description }, i, i < 3));
+
+add("project", "zoho-crm-dashboard", { kind: "case_study", title: "Zoho CRM dashboard", description: "A dashboard built on Zoho CRM data that shows leads, deals and follow-ups in one clear view.",
+  problem: "Sales numbers sit inside CRM screens and getting a summary means exporting and building reports by hand.",
+  solution: "A dashboard that reads the CRM data and shows the pipeline by stage, leads by source and owner, and follow-ups that are due, with filters by date and owner.",
+  tech: [], images: ["/img/case-zoho-crm.svg"], video: "", features: ["Pipeline by stage", "Leads by source and owner", "Follow-ups that are due", "Filters by date and owner"], outcomes: [], url: "", services: ["zoho-automation", "sales-automation"],
+  seoTitle: "Zoho CRM dashboard | RushiTech.AI", metaDescription: "A dashboard built on Zoho CRM data showing leads, deals and follow-ups." }, 8, true);
+add("project", "zoho-people-dashboard", { kind: "case_study", title: "Zoho People dashboard", description: "A dashboard built on Zoho People data that gives HR and managers a quick view of people and attendance.",
+  problem: "HR and managers need summaries of headcount, attendance and leave, which means pulling reports from several screens.",
+  solution: "A dashboard that reads the Zoho People data and shows headcount by department, attendance and leave summaries, with filters for teams and dates.",
+  tech: [], images: ["/img/case-zoho-people.svg"], video: "", features: ["Headcount by department", "Attendance summary", "Leave summary", "Filters by team and date"], outcomes: [], url: "", services: ["zoho-automation", "hr-automation"],
+  seoTitle: "Zoho People dashboard | RushiTech.AI", metaDescription: "A dashboard built on Zoho People data for attendance, leave and headcount." }, 9, false);
 
 /* ---------- FAQs ---------- */
 const FAQS: [string, string, string][] = [
@@ -377,6 +568,7 @@ const nav: [string, string, string][] = [
   ["header", "About", "/about"],
   ["header", "Services", "/services"],
   ["header", "Portfolio", "/portfolio"],
+  ["header", "Custom Apps", "/custom-apps"],
   ["header", "Industries", "/industries"],
   ["header", "How It Works", "/how-it-works"],
   ["header", "Blog", "/blog"],
@@ -408,6 +600,7 @@ add("page", "home", {
       body: "Rushikesh Nargale is an AI automation specialist focused on business automation and software integration. We design practical solutions that remove repetitive work and connect the tools your business already uses.\n\nFrom AI chatbots and voice agents to Tally and Zoho integrations, estimation tools and custom dashboards, we build around the way your team already works.",
       image: "/img/home-about.svg", imageSide: "right", ctaLabel: "More about us", ctaHref: "/about" },
     { id: "h3", type: "service_cards", image: "/img/home-services.svg", heading: "Featured services", intro: "Practical automation and software solutions for your business.", mode: "featured", limit: 6 },
+    { id: "h3b", type: "portfolio_cards", heading: "Custom business apps we have built", intro: "Internal apps and dashboards for policy questions, procurement, field reporting, assets, HR, Zoho and a Tally dashboard for the director, all in one portal.", image: "/img/home-apps.svg", kind: "case_study", limit: 3 },
     { id: "h4", type: "feature_list", intro: "The everyday problems we are usually asked to fix.", image: "/img/home-problems.svg", heading: "Problems we solve", items: [
       { title: "Repetitive manual work", text: "Copying data between tools, sorting documents and sending routine messages." },
       { title: "Disconnected software", text: "Tools that do not talk to each other, causing duplicate entry and inconsistent data." },
@@ -419,7 +612,7 @@ add("page", "home", {
     { id: "h7", type: "portfolio_cards", intro: "A selection of automation and machine learning work.", image: "/img/home-portfolio.svg", heading: "Featured projects", kind: "portfolio", limit: 3 },
     { id: "h8", type: "feature_list", intro: "The tools and platforms we use to build and connect your systems.", image: "/img/home-tech.svg", heading: "Technologies and integrations", items: [
       { title: "Automation", text: "n8n, Zapier, Python, webhooks" },
-      { title: "AI", text: "Language model APIs, document processing, chatbots" },
+      { title: "AI", text: "Language model APIs (OpenAI, Gemini), AI tools such as ChatGPT, Claude and Grok, document processing, chatbots" },
       { title: "Business software", text: "Tally, Zoho, Google Workspace, CRMs" },
       { title: "Web", text: "Next.js, TypeScript, PostgreSQL" },
     ] },
@@ -435,6 +628,12 @@ add("page", "about", {
   sections: [
     hero("a1", "About", "About Rushikesh Nargale", "AI automation, business automation and software integration.", "Contact Us", "/contact"),
     { id: "a2", type: "text_image", imageSide: "right", image: "/img/about-who.svg", imageAlt: "Team collaborating on automation projects", heading: "Who we are", body: "Rushikesh Nargale is an AI Automation Specialist working across business automation and software integration. He holds a B.Tech in Artificial Intelligence from Terna Engineering College (2022–2026) and has worked as an AI Automation Developer associated with Worship Earth Foundation.\n\nWith Rutuja Nargale, the team helps businesses build practical automation and software solutions." },
+    { id: "a2b", type: "feature_list", image: "/img/about-trust.svg", heading: "Work you can look at", intro: "We show real, working examples instead of promises. Client names and details stay confidential.", items: [
+      { title: "8 custom business apps", text: "Policy assistant, procurement, field reporting, asset tracking, HR, work status, staff directory and an invoice view." },
+      { title: "Dashboards on your data", text: "Zoho CRM and Zoho People dashboards, and a Tally dashboard for the director." },
+      { title: "One secure portal", text: "Apps and Zoho tools opened from a single page with access limited to the right people." },
+      { title: "Walkthroughs on request", text: "Ask for a walkthrough of similar work during a consultation." },
+    ] },
     { id: "a3", type: "feature_list", intro: "What guides the way we work.", image: "/img/about-values.svg", heading: "Mission, vision and values", items: [
       { title: "Mission", text: "Help businesses reduce repetitive work with practical, reliable automation." },
       { title: "Vision", text: "Business software that works together and lets people focus on higher-value work." },
@@ -475,6 +674,19 @@ add("page", "pricing", {
     { id: "p4", type: "cta_banner", heading: "Tell us about your project", text: "", label: "Contact Us", href: "/contact" },
   ],
 }, 3);
+
+add("page", "custom-apps", {
+  title: "Custom Apps", seoTitle: "Custom Business Apps | RushiTech.AI", metaDescription: "Custom internal business apps: policy assistant, procurement, field reporting, asset tracking, HR and dashboards.", ogImage: "", showInNav: false,
+  sections: [
+    { id: "ca1", type: "hero", eyebrow: "Custom apps", title: "Custom business apps, built around your work", subtitle: "From AI assistants to approval workflows and dashboards, we build the internal apps your team actually needs.", primaryLabel: "Discuss your app", primaryHref: "/contact", secondaryLabel: "", secondaryHref: "", image: "/img/apps-hero.svg", video: "", compact: true },
+    { id: "ca2", type: "stats", heading: "What we have delivered", intro: "Delivered for one business client (name withheld). Details are shared during a consultation.", items: [{ value: "11", label: "business tools in one portal" }, { value: "8", label: "custom-built apps" }, { value: "3", label: "Zoho apps connected (CRM, People, Expense)" }, { value: "2", label: "Zoho dashboards (CRM and People)" }] },
+    { id: "ca3", type: "text_image", heading: "One portal for the whole team", imageSide: "right", image: "/img/apps-portal.svg", imageAlt: "A single secure portal for business apps",
+      body: "The apps sit behind one portal, so staff open the tool they need from a single page instead of hunting for separate links and logins.\n\nCustom apps, dashboards built on Zoho CRM and Zoho People data, and the client's Zoho Expense live side by side, with access limited to the right people.", ctaLabel: "Talk to us", ctaHref: "/contact" },
+    { id: "ca4", type: "portfolio_cards", heading: "Apps we have built", intro: "Each app solves one everyday problem. Names and company details are left out for confidentiality.", kind: "case_study", limit: 10 },
+    { id: "ca5", type: "feature_list", heading: "More apps we can build", intro: "If your team repeats a task by hand, there is usually an app for it. A few examples of what we can build for you.", image: "/img/apps-more.svg", items: [{"title":"Leave and attendance apps","text":"Request, approve and track leave and attendance with clear rules."},{"title":"Inventory and stock","text":"Stock in and out, reorder alerts and simple reports."},{"title":"Expense and approval workflows","text":"Submit, approve and reimburse with a clear trail."},{"title":"Ticketing and help desk","text":"Track internal or customer requests from open to closed."},{"title":"Visitor and gate management","text":"Log visitors and notify the right person."},{"title":"Customer and vendor portals","text":"Secure portals for orders, documents and status."},{"title":"Quotation and proposal generators","text":"Create consistent quotations from approved rates."},{"title":"Project and task trackers","text":"Plan work, assign owners and see progress."},{"title":"Management dashboards","text":"Live views built from your own data and tools."},{"title":"Document approval workflows","text":"Route documents for review and sign-off."}] },
+    { id: "ca6", type: "cta_banner", heading: "Have an app in mind?", text: "Tell us the problem and who will use it. We will suggest a practical approach and a simple first version.", label: "Contact Us", href: "/contact" },
+  ],
+}, 6);
 
 add("page", "privacy-policy", {
   title: "Privacy Policy", seoTitle: "Privacy Policy | RushiTech.AI", metaDescription: "How we handle information submitted through this website.", ogImage: "", showInNav: false,

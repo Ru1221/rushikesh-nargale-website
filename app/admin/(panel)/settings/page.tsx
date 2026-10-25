@@ -10,7 +10,8 @@ function T({ n, l, v, area }: { n: string; l: string; v?: string; area?: boolean
   return <div><label className="label" htmlFor={n}>{l}</label>{area ? <textarea id={n} name={n} rows={3} className="input" defaultValue={v} /> : <input id={n} name={n} className="input" defaultValue={v} />}</div>;
 }
 
-export default async function Settings({ searchParams }: { searchParams: { saved?: string } }) {
+export default async function Settings(props: { searchParams: Promise<{ saved?: string }> }) {
+  const searchParams = await props.searchParams;
   const s = await settings();
   const mail = !!(process.env.RESEND_API_KEY && process.env.MAIL_FROM);
   return (

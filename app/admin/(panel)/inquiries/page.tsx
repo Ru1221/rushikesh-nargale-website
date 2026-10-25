@@ -4,10 +4,11 @@ import { hasDb, q } from "@/lib/db";
 export const metadata = { title: "Inquiries" };
 const STATUSES = ["New", "Contacted", "Discussion Scheduled", "Proposal Sent", "Won", "Lost", "Archived"];
 
-export default async function Inquiries({ searchParams: sp }: { searchParams: Record<string, string> }) {
+export default async function Inquiries(props: { searchParams: Promise<Record<string, string>> }) {
+  const sp = await props.searchParams;
   if (!hasDb) return <p className="rounded-lg bg-amber-50 p-4 text-sm text-amber-900">Connect the database to receive inquiries.</p>;
   const page = Math.max(1, Number(sp.page) || 1);
-  const where: string[] = []; const p: any[] = [];
+  const where: string[] = [];const p: any[] = [];
   const add = (cond: string, v: any) => { p.push(v); where.push(cond.replace("?", `$${p.length}`)); };
   if (sp.q) add("(lower(full_name||' '||email||' '||company||' '||reference) like ?)", `%${sp.q.toLowerCase()}%`);
   if (sp.status) add("status = ?", sp.status);

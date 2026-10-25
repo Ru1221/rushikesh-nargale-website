@@ -12,7 +12,7 @@ const cell = (v: any) => {
 };
 
 export async function GET(req: NextRequest) {
-  if (!currentAdmin()) return new Response("Unauthorized", { status: 401 });
+  if (!(await currentAdmin())) return new Response("Unauthorized", { status: 401 });
   const sp = Object.fromEntries(req.nextUrl.searchParams);
   const where: string[] = []; const p: any[] = [];
   const add = (c: string, v: any) => { p.push(v); where.push(c.replace("?", `$${p.length}`)); };

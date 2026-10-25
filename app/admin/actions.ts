@@ -9,21 +9,21 @@ import { headers } from "next/headers";
 export interface LoginState { error?: string }
 
 export async function login(_p: LoginState, fd: FormData): Promise<LoginState> {
-  const ip = headers().get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
   if (!rateLimit(`login:${ip}`, 8, 15 * 60 * 1000)) return { error: "Too many attempts. Try again later." };
   const email = String(fd.get("email") || "");
   if (!checkCredentials(email, String(fd.get("password") || ""))) return { error: "Invalid email or password." };
-  startSession(email);
+  await startSession(email);
   redirect("/admin");
 }
 
 export async function logout() {
-  endSession();
+  await endSession();
   redirect("/admin/login");
 }
 
 function refresh() {
-  revalidateTag("content");
+  revalidateTag("content", { expire: 0 });
   revalidatePath("/", "layout");
 }
 
@@ -81,7 +81,7 @@ function need() {
 }
 
 export async function saveItem(resKey: string, id: string, fd: FormData) {
-  requireAdmin();
+  await requireAdmin();
   need();
   const res = RESOURCES[resKey];
   if (!res) redirect("/admin");
@@ -123,7 +123,7 @@ function cleanSections(input: any): any[] {
 }
 
 export async function savePage(id: string, fd: FormData) {
-  requireAdmin();
+  await requireAdmin();
   need();
   let sections: any[] = [];
   try { sections = cleanSections(JSON.parse(String(fd.get("sections") || "[]"))); } catch {}
@@ -167,7 +167,7 @@ async function syncNav(slug: string, title: string, show: boolean) {
 }
 
 export async function deleteItem(kind: string, id: number, back: string) {
-  requireAdmin();
+  await requireAdmin();
   need();
   if (kind === "page") {
     const p = (await q<{ slug: string }>("select slug from content where id=$1 and kind='page'", [id]))[0];
@@ -179,7 +179,7 @@ export async function deleteItem(kind: string, id: number, back: string) {
 }
 
 export async function setStatus(kind: string, id: number, status: string, back: string) {
-  requireAdmin();
+  await requireAdmin();
   need();
   if (!["draft", "published", "archived"].includes(status)) return;
   await q("update content set status=$1, updated_at=now() where id=$2 and kind=$3", [status, id, kind]);
@@ -188,7 +188,7 @@ export async function setStatus(kind: string, id: number, status: string, back: 
 }
 
 export async function moveItem(kind: string, id: number, dir: "up" | "down", back: string) {
-  requireAdmin();
+  await requireAdmin();
   need();
   const rows = await q<{ id: number; sort: number }>("select id, sort from content where kind=$1 order by sort, id", [kind]);
   const i = rows.findIndex((r) => r.id === id);
@@ -202,7 +202,7 @@ export async function moveItem(kind: string, id: number, dir: "up" | "down", bac
 }
 
 export async function duplicateItem(kind: string, id: number, back: string) {
-  requireAdmin();
+  await requireAdmin();
   need();
   const r = (await q<any>("select * from content where id=$1 and kind=$2", [id, kind]))[0];
   if (!r) redirect(back);
@@ -213,7 +213,7 @@ export async function duplicateItem(kind: string, id: number, back: string) {
 }
 
 export async function saveSettings(fd: FormData) {
-  requireAdmin();
+  await requireAdmin();
   need();
   const g = (n: string, max = 500) => String(fd.get(n) || "").trim().slice(0, max);
   const email = (n: string) => { const v = g(n, 200); return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? v : ""; };
@@ -233,7 +233,7 @@ export async function saveSettings(fd: FormData) {
 const STATUSES = ["New", "Contacted", "Discussion Scheduled", "Proposal Sent", "Won", "Lost", "Archived"];
 
 export async function updateInquiry(id: number, fd: FormData) {
-  const admin = requireAdmin();
+  const admin = await requireAdmin();
   need();
   const status = STATUSES.includes(String(fd.get("status"))) ? String(fd.get("status")) : "New";
   const priority = ["Low", "Normal", "High"].includes(String(fd.get("priority"))) ? String(fd.get("priority")) : "Normal";
@@ -245,7 +245,7 @@ export async function updateInquiry(id: number, fd: FormData) {
 }
 
 export async function deleteInquiry(id: number) {
-  requireAdmin();
+  await requireAdmin();
   need();
   // Safe deletion policy: only archived inquiries can be permanently deleted.
   await q("delete from inquiries where id=$1 and archived=true", [id]);
@@ -253,7 +253,7 @@ export async function deleteInquiry(id: number) {
 }
 
 export async function mediaUsage(id: number): Promise<number> {
-  requireAdmin();
+  await requireAdmin();
   const r = await q<{ n: number }>("select count(*)::int as n from content where status='published' and data::text like $1", [`%/media/${id}"%`]);
   return r[0]?.n ?? 0;
 }

@@ -41,7 +41,7 @@ export async function submitInquiry(_prev: FormState, fd: FormData): Promise<For
   const started = Number(fd.get("ts") || 0);
   if (started && Date.now() - started < 2500) return { ok: false, message: "Please take a moment to complete the form, then submit again." };
 
-  const ip = headers().get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (!rateLimit(`inq:${ip}`, 5, 10 * 60 * 1000)) return { ok: false, message: "Too many submissions. Please try again in a few minutes." };
 
   const raw = Object.fromEntries(fd.entries());

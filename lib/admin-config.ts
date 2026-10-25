@@ -131,6 +131,7 @@ export const RESOURCES: Record<string, Resource> = {
       { name: "experience", label: "Experience", type: "items", fields: [{ name: "title", label: "Role", type: "text" }, { name: "place", label: "Organisation", type: "text" }, { name: "period", label: "Period", type: "text" }] },
       { name: "skills", label: "Skills (one per line)", type: "lines" },
       { name: "responsibilities", label: "Responsibilities (one per line)", type: "lines" },
+      { name: "certifications", label: "Training and certifications (one per line)", type: "lines" },
       { name: "projects", label: "Verified projects (one per line)", type: "lines" },
       { name: "contactKey", label: "Notification key", type: "select", options: ["", "rushikesh", "rutuja"], help: "Used to route enquiry notifications." },
     ],

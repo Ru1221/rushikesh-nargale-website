@@ -4,7 +4,8 @@ import { hasDb, q } from "@/lib/db";
 export const dynamic = "force-dynamic";
 
 /** Serves uploaded media from Postgres, with HTTP Range support so videos can seek. */
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const id = Number(params.id);
   if (!hasDb || !Number.isInteger(id)) return new Response("Not found", { status: 404 });
   const meta = (await q<{ mime: string; size: number; status: string }>("select mime, size, status from media where id=$1", [id]))[0];

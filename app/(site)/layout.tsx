@@ -1,5 +1,6 @@
 import Header, { type NavLink } from "@/components/Header";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 import { list, settings } from "@/lib/content";
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -24,6 +25,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
     <>
       <Header name={s.general.siteName} logo={s.general.logo} links={links} />
       <main id="main">{children}</main>
+      <ChatWidget />
       <Footer name={s.general.siteName} tagline={s.general.tagline} text={s.footer.text} links={footerLinks} contact={s.contact} />
     </>
   );

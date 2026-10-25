@@ -33,6 +33,7 @@ export default async function Team() {
                 {m.education?.length > 0 && <Block title="Education">{m.education.map((e: any, i: number) => <li key={i}>{[e.title, e.place, e.period].filter(Boolean).join(", ")}</li>)}</Block>}
                 {m.experience?.length > 0 && <Block title="Experience">{m.experience.map((e: any, i: number) => <li key={i}>{[e.title, e.place, e.period].filter(Boolean).join(", ")}</li>)}</Block>}
                 {m.responsibilities?.length > 0 && <Block title="Responsibilities">{m.responsibilities.map((r: string) => <li key={r}>{r}</li>)}</Block>}
+                {m.certifications?.length > 0 && <Block title="Training & certifications">{m.certifications.map((r: string) => <li key={r}>{r}</li>)}</Block>}
                 {m.projects?.length > 0 && <Block title="Projects">{m.projects.map((r: string) => <li key={r}>{r}</li>)}</Block>}
               </div>
               {m.skills?.length > 0 && <div className="mt-5 flex flex-wrap gap-2">{m.skills.map((s: string) => <Tag key={s}>{s}</Tag>)}</div>}

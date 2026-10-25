@@ -9,6 +9,7 @@ const headers = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  images: { unoptimized: true }, // plain <img> tags are used; this also turns the image optimizer endpoint off
   async headers() {
     return [{ source: "/:path*", headers }];
   },
