@@ -498,7 +498,7 @@ add("page", "terms", {
 export const seedContent = out;
 
 export const seedSettings: Record<string, any> = {
-  general: { siteName: "RushiTech.AI", tagline: "Automate. Integrate. Innovate.", title: "AI Automation | Business Automation | Software Integration", logo: "/logo-mark.svg", favicon: "", ctaPrimary: "Explore Services", ctaSecondary: "Contact Us" },
+  general: { siteName: "RushiTech.AI", tagline: "Smart automation for smarter business", title: "AI Automation | Business Automation | Software Integration", logo: "/logo-mark.svg", favicon: "", ctaPrimary: "Explore Services", ctaSecondary: "Contact Us" },
   contact: { email: "rushikeshnargale11@gmail.com", phone: "+91 8668379629", linkedin: "https://www.linkedin.com/in/rushikesh-nargale-945586288/", portfolio: "https://ru1221.github.io/Portfolio/" },
   footer: { text: "AI automation, custom business applications, software integration, workflow automation, and intelligent business solutions." },
   seo: { title: "RushiTech.AI | AI Automation & Software Integration", description: "AI automation, business automation and software integration for businesses.", ogImage: "" },

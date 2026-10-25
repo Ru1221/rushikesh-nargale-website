@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Brand } from "./Header";
 
 export default function Footer({
   name, tagline, text, links, contact,
@@ -12,8 +11,7 @@ export default function Footer({
     <footer className="bg-navy-950 text-slate-300">
       <div className="container-x grid gap-10 py-12 md:grid-cols-3">
         <div>
-          <p className="flex items-center gap-2 text-lg font-bold text-white"><img src="/logo-mark.svg" alt="" className="h-8 w-8" /><Brand name={name} /></p>
-          <p className="text-sm text-cyan-accent">{tagline}</p>
+          <Link href="/" aria-label={`${name} - ${tagline}`}><img src="/logo-dark.svg" alt={`${name} - ${tagline}`} width="725" height="130" loading="lazy" className="h-auto w-full max-w-[320px]" /></Link>
           <p className="mt-3 text-sm">{text}</p>
         </div>
         <nav aria-label="Footer">
