@@ -4,7 +4,7 @@ import { seedContent, seedSettings } from "./seed";
 export const hasDb = !!process.env.DATABASE_URL;
 
 /** Bump when lib/seed.ts content changes. Untouched rows are upgraded on the next start; rows edited in the admin are never overwritten. */
-const SEED_VERSION = 5;
+const SEED_VERSION = 7;
 
 const g = globalThis as unknown as { _pool?: Pool; _ready?: Promise<void> };
 

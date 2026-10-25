@@ -121,6 +121,8 @@ export const RESOURCES: Record<string, Resource> = {
       { name: "name", label: "Name", type: "text" },
       { name: "title", label: "Professional title", type: "text" },
       { name: "location", label: "Location", type: "text" },
+      { name: "short", label: "Short intro (2 lines, shown on the card)", type: "textarea", rows: 2 },
+      { name: "highlights", label: "Highlights (up to 4, one per line)", type: "lines" },
       { name: "bio", label: "Biography", type: "textarea", rows: 5 },
       { name: "photo", label: "Profile photo", type: "media" },
       { name: "email", label: "Email", type: "text" },

@@ -372,6 +372,10 @@ about-trust|Work you can look at|win,bars,check|Work you can look at
 accounting-tally-services|Accounting and Tally support|doc,bars,check|Accounting and Tally support
 mis-reports|MIS reports and dashboards|bars,pie,chat|MIS reports and dashboards
 website-development|Static and dynamic websites|win,gear,doc|Static and dynamic websites
+hiw-plan|Delivery plan|cal,gear,check|Typical delivery plan
+hiw-support|After go-live|shield,clock,check|Warranty and support
+pricing-included|Included and excluded|doc,check,shield|What is included
+terms-hero|Terms|doc,shield,check|Clear terms
 `.trim().split("\n");
 ART.forEach((line, i) => { const [n, l, m, c] = line.split("|"); art(n, l, m.split(","), c, i); });
 

@@ -76,8 +76,8 @@ const services: S[] = [
     ["Python", "n8n", "Email / messaging APIs"],
     "Relevant tenders are easy to miss and deadlines are hard to track by hand.", ["ai-estimation", "workflow-automation"]],
   ["accounts-automation", "Accounts Automation", "accounts", "Reduce manual data entry and prepare accounting data faster.",
-    "We automate routine accounts work such as data entry, reconciliation assistance and report preparation, always leaving final review and filing to your accountants.",
-    ["Accounts Data Entry Automation", "Reconciliation Assistance", "GST-Related Data Preparation", "Financial Reporting Workflows"],
+    "We automate routine accounts work such as data entry, reconciliation assistance and report preparation, always leaving final review and filing to your accountants. A typical flow runs from the Tally or finance source through data sync and validation to revenue, collection and expense views, department or project reporting, cash-flow, alerts and AI management insights.",
+    ["Tally and finance data integration with scheduled sync","Revenue and collections tracking, outstanding and trends","Expense, department and project reporting","Cash-flow visibility with threshold alerts","AI finance insights and anomaly flags","Accounts data entry automation","Reconciliation assistance","GST-related data preparation","Financial reporting workflows"],
     ["Python", "Google Sheets", "Tally / Zoho APIs"],
     "Manual accounts entry and reporting take time and invite mistakes.", ["tally-integration", "zoho-automation"]],
   ["tally-integration", "Tally Integration", "accounts", "Move data between Tally and your other systems.",
@@ -91,13 +91,13 @@ const services: S[] = [
     ["Zoho APIs", "n8n", "Zapier"],
     "Approvals and data hand-offs between Zoho apps and other tools are often manual.", ["accounts-automation", "hr-automation", "sales-automation"]],
   ["hr-automation", "HR Automation", "hrsales", "Streamline onboarding, HR reporting and attendance workflows.",
-    "We automate HR tasks such as employee onboarding steps, HR reports and attendance-related workflows, integrating with the HR tools you use.",
-    ["Employee Onboarding", "HR Reports", "Attendance Workflow Integrations"],
+    "We automate HR tasks such as employee onboarding steps, HR reports and attendance-related workflows, integrating with the HR tools you use. A typical hiring flow runs from job requirement to job posting, applicant capture, AI screening, candidate score and rank, WhatsApp outreach, interview scheduling, pipeline update and an HR dashboard with alerts. AI screening and scoring support the decision; final hiring decisions stay with your authorised people.",
+    ["Job posting automation","Applicant intake and consolidation into one pipeline","AI CV screening against your role criteria","Candidate scoring and ranking","WhatsApp candidate outreach with approved templates","Interview scheduling and reminders","HR pipeline and hiring analytics dashboard","Employee onboarding","HR reports","Attendance workflow integrations"],
     ["Zoho People", "Google Workspace", "Python", "n8n"],
     "HR teams repeat the same onboarding and reporting steps for every employee.", ["zoho-automation", "workflow-automation"]],
   ["sales-automation", "Sales and CRM Automation", "hrsales", "Capture leads, follow up on time and report on your pipeline.",
-    "We connect lead sources to your CRM, automate follow-ups and build sales reports so your team spends time selling.",
-    ["Lead Management", "CRM Integration", "Automated Follow-ups", "Sales Reporting"],
+    "We connect lead sources to your CRM, automate follow-ups and build sales reports so your team spends time selling. A typical flow runs from lead source to CRM, call and transcript, AI summary and qualification, lead score, write-back to the CRM, automatic assignment, WhatsApp nurture, site visit and a conversion dashboard.",
+    ["Lead capture and source tracking into Zoho CRM","Call transcript retrieval from your voice or call tool","AI call summary and lead qualification","AI lead scoring with write-back to the CRM","Automated lead routing to the right salesperson","WhatsApp follow-up and nurturing sequences","Site visit or appointment scheduling and reminders","Sales pipeline, conversion dashboard and AI insights","Lead management and CRM integration","Sales reporting"],
     ["CRM APIs", "n8n", "Google Sheets", "Email APIs"],
     "Leads get lost and follow-ups are late when tracking is manual.", ["zoho-automation", "appointment-automation"]],
   ["workflow-automation", "Workflow Automation", "software", "Build reliable automated workflows with n8n, Zapier and code.",
@@ -169,6 +169,8 @@ add("team", "rushikesh-nargale", {
   name: "Rushikesh Nargale",
   title: "AI Automation Specialist | Business Automation | Software Integration",
   bio: "Rushikesh builds AI automation, workflow automation and software integrations for businesses. His work includes automation with n8n and AI services, Python automation and API integrations, and custom business software. He has built internal business apps and dashboards, including an AI policy assistant, procurement and field-reporting apps, asset tracking and HR tools, Zoho CRM and Zoho People dashboards, and a Tally dashboard for a director. He has strong working knowledge of AI tools such as ChatGPT, Claude and Grok, and many others.",
+  short: "AI Automation Specialist who builds workflow automation, AI assistants, custom business apps and dashboards for businesses.",
+  highlights: ["B.Tech in Artificial Intelligence, Terna Engineering College (2022–2026)","AI Engineer Intern: AI-driven automation and machine learning pipelines","Built custom internal apps, dashboards and AI automations","Works with ChatGPT, Claude, Grok and many other AI tools"],
   location: "Pune, Maharashtra", photo: "/team/rushikesh.jpg", email: "rushikeshnargale11@gmail.com", phone: "+91 8668379629",
   linkedin: "https://www.linkedin.com/in/rushikesh-nargale-945586288/",
   portfolio: "https://ru1221.github.io/Portfolio/", social: [],
@@ -188,6 +190,8 @@ add("team", "rutuja-nargale", {
   name: "Rutuja Nargale",
   title: "Junior Account Executive | Tally | Zoho Books | GST & TDS",
   bio: "Rutuja holds a B.Com degree and works in accounting. She has hands-on experience recording purchase bills, sales invoices and expenses, assisting with bank reconciliation, and supporting GST and TDS related work, using Tally, Zoho Books, Xero and Excel. Her accounting background supports our Tally, Zoho and accounts automation work. She also has working knowledge of AI tools such as ChatGPT, Claude and Grok.",
+  short: "B.Com graduate and accounts professional skilled in Tally, Zoho Books, GST data and MIS reporting.",
+  highlights: ["B.Com, Dayanand College of Commerce, Latur (CGPA 9.62)","Junior Account Executive: Tally, Zoho Books and Xero","Bank reconciliation, GST and TDS support, MIS reports","Working knowledge of ChatGPT, Claude, Grok and other AI tools"],
   location: "Pune, Maharashtra", photo: "/team/rutuja.jpg", email: "rutujanargale2@gmail.com", phone: "+91 7841030309",
   linkedin: "https://www.linkedin.com/in/rutuja-nargale-74b904363", portfolio: "", social: [],
   education: [
@@ -474,7 +478,7 @@ const FAQS: [string, string, string][] = [
  [
   "Pricing & timelines",
   "Do you offer support after delivery?",
-  "Support and maintenance can be agreed separately after handover, based on the needs of the project."
+  "Delivered work includes a 30-day warranty for defects in the agreed scope after go-live. After that, optional maintenance (AMC) can be agreed separately: workflow health checks, error and log review, credential renewal help, minor fixes and a set number of support hours each month."
  ],
  [
   "Technical & security",
@@ -609,7 +613,7 @@ const nav: [string, string, string][] = [
 nav.forEach(([location, label, href], i) => add("nav", `nav-${i + 1}`, { location, label, href, parent: "", visible: true }, i));
 
 /* ---------- Pages ---------- */
-const HERO_IMG: Record<string, string> = { a1: "/img/about-hero.svg", w1: "/img/hiw-hero.svg", p1: "/img/pricing-hero.svg", pp0: "/img/legal-privacy.svg", t0: "/img/legal-terms.svg" };
+const HERO_IMG: Record<string, string> = { a1: "/img/about-hero.svg", w1: "/img/hiw-hero.svg", p1: "/img/pricing-hero.svg", pp0: "/img/legal-privacy.svg", t0: "/img/terms-hero.svg" };
 const hero = (id: string, eyebrow: string, title: string, subtitle: string, pl = "", ph = "") => ({
   id, type: "hero", eyebrow, title, subtitle, primaryLabel: pl, primaryHref: ph, secondaryLabel: "", secondaryHref: "", image: HERO_IMG[id] || "", video: "", compact: true,
 });
@@ -681,6 +685,8 @@ add("page", "how-it-works", {
   sections: [
     hero("w1", "Process", "How it works", "A simple, transparent process from first conversation to handover.", "Book a Consultation", "/book-consultation"),
     { id: "w2", type: "process_steps", intro: "Every project follows the same clear steps so you always know what happens next.", image: "/img/hiw-process.svg", heading: "Our process", items: [...stdProcess, { title: "Support", text: "Support and improvements are agreed with you based on the needs of the project." }] },
+    { id: "w2b", type: "process_steps", heading: "A typical delivery plan", intro: "For a project with several workflows, work usually runs in these phases. Exact timing depends on your scope, access and approvals.", image: "/img/hiw-plan.svg", items: [{"title":"Week 1: Discovery","text":"Process mapping, access and API review, field mapping, and a signed workflow and integration design."},{"title":"Early weeks: First workflows","text":"The first set of workflows is built and shown on a dashboard, then tested with your users before moving on."},{"title":"Middle weeks: Core and AI workflows","text":"CRM, AI and messaging workflows are built and written back to your systems, each one ready for acceptance testing."},{"title":"Later weeks: Finance and reporting","text":"Accounting or finance data integration, reporting and alerts."},{"title":"Integration","text":"End-to-end integration, error handling and monitoring set-up, giving a production-ready candidate."},{"title":"Final weeks: Go-live","text":"Fixes from acceptance testing, deployment, documentation and training, then production go-live and handover."}] },
+    { id: "w2c", type: "feature_list", heading: "After go-live", intro: "Your solution does not end at handover.", image: "/img/hiw-support.svg", items: [{"title":"30-day warranty","text":"Defects in the delivered scope are fixed at no extra development cost."},{"title":"Optional maintenance (AMC)","text":"Workflow health checks, error and log review, credential renewal help, minor fixes and monthly support hours."},{"title":"Change requests","text":"New automations, redesigns, new systems and extra modules are scoped and quoted separately."},{"title":"Third-party costs","text":"Licences and usage charges of tools such as your CRM, messaging, voice and AI services are paid directly by you."}] },
     { id: "w3", type: "faq", intro: "Quick answers about how we work.", image: "/img/hiw-faq.svg", heading: "Common questions", source: "all", limit: 5, items: [] },
     { id: "w4", type: "cta_banner", heading: "Start with a conversation", text: "", label: "Book a Consultation", href: "/book-consultation" },
   ],
@@ -695,6 +701,7 @@ add("page", "pricing", {
       { title: "Time-based engagement", text: "Ongoing work billed on time spent, for evolving requirements." },
       { title: "Support and maintenance", text: "Ongoing support agreed separately after delivery." },
     ] },
+    { id: "p2b", type: "feature_list", heading: "What a quote includes", intro: "A written quotation lists scope, timeline, cost, payment stages and exclusions so there are no surprises.", image: "/img/pricing-included.svg", items: [{"title":"Included","text":"Design, build, integration with your existing systems, testing with your users, deployment, documentation, training and a 30-day warranty."},{"title":"Payment stages","text":"Work is billed in stages tied to progress, usually starting with an advance. See the Terms for the usual structure."},{"title":"Not included","text":"Third-party licences and usage charges (CRM, messaging, voice, AI services, hosting) and changes outside the agreed scope."},{"title":"Maintenance","text":"Optional monthly maintenance is quoted separately, with a bundled plan recommended when several workflows run together."}] },
     { id: "p3", type: "rich_text", heading: "How a quote is prepared", body: "After an initial conversation we review your workflow, list what is in and out of scope, and send a written proposal with timeline and cost. Third-party tool and API costs (for example hosting or AI service usage) are separate and explained up front." },
     { id: "p4", type: "cta_banner", heading: "Tell us about your project", text: "", label: "Contact Us", href: "/contact" },
   ],
@@ -723,11 +730,11 @@ add("page", "privacy-policy", {
 }, 4);
 
 add("page", "terms", {
-  title: "Terms and Conditions", seoTitle: "Terms and Conditions | RushiTech.AI", metaDescription: "Terms for using this website.", ogImage: "", showInNav: false,
+  title: "Terms and Conditions", seoTitle: "Terms and Conditions | RushiTech.AI", metaDescription: "Payment, scope, warranty, maintenance and other terms for our projects.", ogImage: "", showInNav: false,
   sections: [
-    hero("t0", "Legal", "Terms and Conditions", ""),
-    { id: "t1", type: "rich_text", heading: "", body:
-      "This is a starting-point document and should be reviewed and adapted by the site owner.\n\n## Use of this website\nThe content on this site is provided for general information about our services. Submitting an enquiry does not create a contract.\n\n## Services\nScope, pricing, timelines and ownership for any project are agreed in writing before work starts.\n\n## No guarantees\nWe do not guarantee specific business results, savings or return on investment. Outcomes depend on your processes and systems.\n\n## Third-party services\nSolutions may rely on third-party tools and APIs, whose terms and costs apply separately.\n\n## Contact\nRushikesh Nargale – rushikeshnargale11@gmail.com" },
+    hero("t0", "Legal", "Terms and Conditions", "Clear terms for every project: scope, payment, warranty, maintenance and confidentiality."),
+    { id: "t1", type: "rich_text", heading: "", body: "These terms apply to projects and services provided by RushiTech.AI. The exact scope, timeline and cost of each project are confirmed in a written quotation. This is a general summary and should be reviewed by the site owner.\n\n## Scope\n\nThe project scope and deliverables are those mutually agreed in the quotation. Changes, modifications or extra features outside the agreed scope are treated as change requests and charged separately.\n\n## Payment\n\nProjects are billed in stages. A typical structure is 40% advance before work starts, 30% when about half of the project is complete, and the remaining 30% after final delivery. The exact schedule is stated in your quotation. Applicable taxes such as GST are added as per the invoice.\n\n## Refunds\n\nAdvance payments are non-refundable once development work has started.\n\n## Client responsibilities\n\n- Provide the required information, access, credentials, sample data, content, approved templates and business rules on time\n\n- Nominate people to test the work (user acceptance testing) and approve each stage\n\n- Review and approve important outputs before using them\n\n## Timelines and delays\n\nBuild times depend on API availability, data quality, approval turnaround and actual system permissions. Delays in information, approvals, access or third-party services can move the delivery dates.\n\n## AI limitations\n\nAI-generated results may not always be 100% accurate. AI screening, scoring, summaries and insights are decision support. Final HR, sales, finance and business decisions remain with your authorised people, who are responsible for reviewing important outputs before use.\n\n## Third-party costs\n\nAPI, software, hosting, AI tool, messaging, voice, CRM and accounting-software licences and usage charges, and other third-party subscriptions, are paid by the client unless agreed otherwise. They are not part of our fees or of any maintenance plan.\n\n## Warranty and bug fixes\n\nDefects in the agreed scope are fixed within a reasonable period at no extra development cost. A 30-day warranty applies after production go-live unless your quotation says otherwise.\n\n## Maintenance (AMC)\n\nOptional maintenance after the warranty is quoted separately. A typical plan covers workflow health checks, error and log review, credential or token renewal assistance, minor bug fixes, minor field or rule adjustments and a set number of support hours each month. New automations, major workflow redesign, new third-party systems, substantial data-structure changes, new dashboards or modules, historical data migration and additional branches or entities are change requests quoted separately.\n\n## Ownership\n\nFinal project deliverables are handed over to the client on receipt of full payment.\n\n## Confidentiality\n\nBoth parties keep confidential all confidential information shared during the project. Client names and details are not published without permission.\n\n## No guarantees\n\nWe do not guarantee specific business results, savings or return on investment. Outcomes depend on your processes, data and systems.\n\n## Acceptance\n\nApproval of a quotation, or the start of a project, means you accept these terms.\n\n## Contact\n\nRushiTech.AI, Pune, Maharashtra. Rushikesh Nargale: rushikeshnargale11@gmail.com, +91 8668379629. Rutuja Nargale: rutujanargale2@gmail.com, +91 7841030309." },
+    { id: "t2", type: "cta_banner", heading: "Questions about these terms?", text: "We are happy to walk you through them before you decide.", label: "Contact Us", href: "/contact" },
   ],
 }, 5);
 
